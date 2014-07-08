@@ -13,7 +13,7 @@
 \pgfdeclareimage[height=0.9cm]{university-logo}{images/logo}
 \logo{\pgfuseimage{university-logo}}
 % large version for upper right corner of title page
-\pgfdeclareimage[height=1.085cm]{big-university-logo}{images/logo}
+\pgfdeclareimage[height=0.9cm]{big-university-logo}{images/logo}
 \newcommand{\titleimage}[1]{\pgfdeclareimage[height=2.92cm]{title-image}{#1}}
 \titlegraphic{\pgfuseimage{title-image}}
 %%% end FU logo
@@ -24,9 +24,10 @@
 % colors to be used
 \definecolor{text-grey}{rgb}{0.45, 0.45, 0.45} 	% grey text on white background
 \definecolor{bg-grey}{rgb}{0.66, 0.65, 0.60} 	% grey background (for white text)
-\definecolor{fu-blue}{RGB}{0, 51, 102} 			% blue text
-\definecolor{fu-green}{RGB}{153, 204, 0} 		% green text
-\definecolor{fu-red}{RGB}{204, 0, 0} 			% red text (used by \alert)
+\definecolor{usp-blue}{RGB}{16, 148, 171} 			% blue text
+\definecolor{usp-blue-light}{RGB}{100, 196, 208} 	% blue text
+\definecolor{usp-orange}{RGB}{252, 180, 33} 		% Orange text
+\definecolor{usp-red}{RGB}{204, 0, 0} 			% red text (used by \alert)
 
 % switch off the sidebars
 % TODO: loading \useoutertheme{sidebar} (which is maybe wanted) also inserts
@@ -71,9 +72,9 @@
 %%% colors
 \usecolortheme{lily}
 \setbeamercolor*{normal text}{fg=black,bg=white}
-\setbeamercolor*{alerted text}{fg=fu-red}
-\setbeamercolor*{example text}{fg=fu-green}
-\setbeamercolor*{structure}{fg=fu-blue}
+\setbeamercolor*{alerted text}{fg=usp-red}
+\setbeamercolor*{example text}{fg=usp-orange}
+\setbeamercolor*{structure}{fg=usp-blue}
 
 \setbeamercolor*{block title}{fg=white,bg=black!50}
 \setbeamercolor*{block title alerted}{fg=white,bg=black!50}
@@ -83,11 +84,11 @@
 \setbeamercolor*{block body alerted}{bg=black!10}
 \setbeamercolor*{block body example}{bg=black!10}
 
-\setbeamercolor{bibliography entry author}{fg=fu-blue}
+\setbeamercolor{bibliography entry author}{fg=usp-blue}
 % TODO: this doesn't work at all:
 \setbeamercolor{bibliography entry journal}{fg=text-grey}
 
-\setbeamercolor{item}{fg=fu-blue}
+\setbeamercolor{item}{fg=usp-blue}
 \setbeamercolor{navigation symbols}{fg=text-grey,bg=bg-grey}
 %%% end colors
 
@@ -95,17 +96,17 @@
 \setbeamertemplate{headline}{
 \vskip4pt\hfill\insertlogo\hspace{3.5mm} % logo on the right
 
-\vskip6pt\color{fu-blue}\rule{\textwidth}{0.4pt} % horizontal line
+\vskip6pt\color{usp-blue}\rule{\textwidth}{0.4pt} % horizontal line
 }
 %%% end headline
 
 %%% footline
 \newcommand{\footlinetext}{\insertshortinstitute, \insertshorttitle, \insertshortdate}
 \setbeamertemplate{footline}{
-\vskip5pt\color{fu-blue}\rule{\textwidth}{0.4pt}\\ % horizontal line
+\vskip5pt\color{usp-blue}\rule{\textwidth}{0.4pt}\\ % horizontal line
 \vskip2pt
 \makebox[123mm]{\hspace{7.5mm}
-\color{fu-blue}\footlinetext
+\color{usp-blue}\footlinetext
 \hfill \raisebox{-1pt}{\usebeamertemplate***{navigation symbols}}
 \hfill \insertframenumber}
 \vskip4pt
@@ -117,5 +118,5 @@
 \lstset{language=Python} % this sets the syntax highlighting
 \lstset{mathescape=true} % this switches on $...$ substitution in code
 % enables UTF-8 in source code:
-\lstset{literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{\ss}1}
+\lstset{literate={��}{{\"a}}1 {��}{{\"o}}1 {��}{{\"u}}1 {��}{{\"A}}1 {��}{{\"O}}1 {��}{{\"U}}1 {��}{\ss}1}
 %%% end listings
