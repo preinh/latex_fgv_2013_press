@@ -10,10 +10,10 @@
 
 %%% FU logo
 % small version for upper right corner of normal pages
-\pgfdeclareimage[height=0.9cm]{university-logo}{FULogo_RGB}
+\pgfdeclareimage[height=0.9cm]{university-logo}{images/logo}
 \logo{\pgfuseimage{university-logo}}
 % large version for upper right corner of title page
-\pgfdeclareimage[height=1.085cm]{big-university-logo}{FULogo_RGB}
+\pgfdeclareimage[height=1.085cm]{big-university-logo}{images/logo}
 \newcommand{\titleimage}[1]{\pgfdeclareimage[height=2.92cm]{title-image}{#1}}
 \titlegraphic{\pgfuseimage{title-image}}
 %%% end FU logo
@@ -22,11 +22,11 @@
 \setbeamersize{text margin right=3.5mm, text margin left=7.5mm}  % text margin
 
 % colors to be used
-\definecolor{text-grey}{rgb}{0.45, 0.45, 0.45} % grey text on white background
-\definecolor{bg-grey}{rgb}{0.66, 0.65, 0.60} % grey background (for white text)
-\definecolor{fu-blue}{RGB}{0, 51, 102} % blue text
-\definecolor{fu-green}{RGB}{153, 204, 0} % green text
-\definecolor{fu-red}{RGB}{204, 0, 0} % red text (used by \alert)
+\definecolor{text-grey}{rgb}{0.45, 0.45, 0.45} 	% grey text on white background
+\definecolor{bg-grey}{rgb}{0.66, 0.65, 0.60} 	% grey background (for white text)
+\definecolor{fu-blue}{RGB}{0, 51, 102} 			% blue text
+\definecolor{fu-green}{RGB}{153, 204, 0} 		% green text
+\definecolor{fu-red}{RGB}{204, 0, 0} 			% red text (used by \alert)
 
 % switch off the sidebars
 % TODO: loading \useoutertheme{sidebar} (which is maybe wanted) also inserts
