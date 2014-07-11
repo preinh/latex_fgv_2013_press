@@ -16,20 +16,64 @@
 % to show usage of some features specific to the FU Berlin template.
 
 % remove this line and the "ucs" option to the documentclass when your editor is not utf8-capable
-\usepackage[utf8x]{inputenc}    % to make utf-8 input possible
+\usepackage[utf8]{inputenc}    % to make utf-8 input possible
 \usepackage[brazil]{babel}
 %\usepackage[english]{babel}     % hyphenation etc., alternatively use 'german' as parameter
 
 % figure numbers, captions and subcaptions
-\usepackage[font=small,labelfont=bf]{caption}
-\usepackage[font=footnotesize]{subcaption}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up,compatibility=false]{caption}
+\usepackage[font=small,compatibility=false]{subcaption}
+\usepackage[caption=false]{subfig}
+
+\captionsetup[subcaption]{}
+
+
 \setbeamertemplate{caption}[numbered]
 
-\include{template}  % THIS is the line that includes the FU template!
+% links
+%\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=Green,bookmarksopen=true]{hyperref}
+
+% bibliography
+\usepackage[fixlanguage]{babelbib}
+%\usepackage{biblatex}
+
+% % links coloridos
+%\usepackage[all]{hypcap}                    % soluciona o problema com o
+% hyperref e capitulos
+\usepackage[round,sort,nonamebreak]{natbib} % citação bibliográfica textual(plainnat-ime.bst)
+\bibpunct{(}{)}{;}{a}{\hspace{-0.7ex},}{,} % estilo de citação. Veja alguns exemplos em http://merkel.zoneo.net/Latex/natbib.php
+
+
+\usepackage[sanitize=none,acronym,toc]{glossaries}
+%\usepackage[acronym,toc]{glossaries}
+% Define a new glossary type
+\newglossary[slg,toc]{symbols}{sym}{sbl}{Lista de Símbolos}
+\newglossary[elg]{equations}{eqn}{eql}{Equations}
+\makeglossaries
+
+
+% ---------------------------------------------------------------------------- %
+% Dicionario de Termos:
+\input{d01-terms}       
+\input{d02-symbols}       
+\input{d03-acronyms}       
+\input{d04-equations}       
+% ---------------------------------------------------------------------------- %
+
+
+\include{template}  % THIS is the line that includes the template!
 
 \usepackage{arev,t1enc} % looks nicer than the standard sans-serif font
 % if you experience problems, comment out the line above and change
 % the documentclass option "9pt" to "10pt"
+
+
+% ---------------------------------------------------------------------------- %
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\erf}{erf}
+% ---------------------------------------------------------------------------- %
+
 
 % image to be shown on the title page (without file extension, should be pdf or png)
 \titleimage{images/capa_pga}
@@ -65,10 +109,9 @@
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
-\AtBeginSubsection[]
-{
+\AtBeginSubsection[]{
   \begin{frame}<beamer>{Agenda}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents[currentsection, currentsubsection]
   \end{frame}
 }
 
@@ -82,8 +125,6 @@
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
-
-
 
 \section{Motivação}
 	\subsection{Análise probabilística de ameaça sísmica}
@@ -109,7 +150,7 @@ explicar algum item por exemplo
 		\item algum argumento pra dar
 	\end{itemize}
 	\begin{figure}[H]
-		\centering
+		\centering{}
 		\includegraphics[height=0.70\textheight]{images/global_pde_mag_all}
 		\caption[Mapa Mundial de Epicentros 1963-1998]
 		{Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998}}
@@ -118,27 +159,6 @@ explicar algum item por exemplo
 \end{frame}
 
 
-\begin{frame}{Subfiguras\: outro teste}
-
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
-		  	\centering
-			\includegraphics[width=1.00\textwidth]{images/hmtk_sa3_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
-			\label{fig:sa_eq_record}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.48\textwidth}
-		  	\centering
-			\includegraphics[width=1.00\textwidth]{images/hmtk_bsb2013_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
-			\label{fig:br_eq_record}
-    \end{subfigure}%
-	\caption{Número de tremores registrados por ano após 1900}
-	\label{fig:eq_record}
-\end{figure}
-\end{frame}
 
 %
 \begin{frame}{Figura teste}
@@ -153,6 +173,28 @@ explicar algum item por exemplo
    \caption[Mapa Mundial de Epicentros 1963-1998]
    		   {Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998} } 
    \label{f:global_epicenters}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Subfiguras outro teste}
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_sa3_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
+			\label{fig:sa_eq_record}
+	\end{subfigure}%
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_bsb2013_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
+			\label{fig:br_eq_record}
+    \end{subfigure}
+	\caption{Número de tremores registrados por ano após 1900}
+	\label{fig:eq_record}
 \end{figure}
 \end{frame}
 
@@ -189,6 +231,46 @@ explicar algum item por exemplo
   \end{itemize}
 \end{frame}
 
+
+
+\begin{frame}{Subfiguras outro teste}
+\begin{figure}
+	\centering
+	\subfloat[Número de tremores registrados por ano,\gls*{iscgem}.
+			\label{fig:sa_eq_record}]{
+		  	\centering
+			\includegraphics[width=0.48\textwidth]{images/hmtk_sa3_rate}}
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\subfloat[Número de tremores registrados por ano,\gls*{bsb2013}
+			\label{fig:br_eq_record}]{
+		  	\centering
+			\includegraphics[width=0.48\textwidth]{images/hmtk_bsb2013_rate}}
+	\caption{Número de tremores registrados por ano após 1900}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Subfiguras outro teste}
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_sa3_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
+			\label{fig:sa_eq_record}
+	\end{subfigure}%
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_bsb2013_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
+			\label{fig:br_eq_record}
+    \end{subfigure}
+	\caption{Número de tremores registrados por ano após 1900}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
 
 \subsection{Previous Work}
 
@@ -311,29 +393,17 @@ int main (void)
 \section<presentation>*{\appendixname}
 \subsection<presentation>*{For Further Reading}
 
-\begin{frame}[allowframebreaks]
-  \frametitle<presentation>{For Further Reading}
-    
-  \begin{thebibliography}{10}
-    
-  \beamertemplatebookbibitems
-  % Start with overview books.
 
-  \bibitem{Author1990}
-    A.~Author.
-    \newblock {\em Handbook of Everything}.
-    \newblock Some Press, 1990.
- 
-    
-  \beamertemplatearticlebibitems
-  % Followed by interesting articles. Keep the list short. 
 
-  \bibitem{Someone2000}
-    S.~Someone.
-    \newblock On this and that.
-    \newblock {\em Journal of This and That}, 2(1):50--100,
-    2000.
-  \end{thebibliography}
+\begin{frame}[allowframebreaks]{Referências}
+	\scriptsize
+	% ---------------------------------------------------------------------------- %
+	% Bibliografia
+	\backmatter \singlespacing   				% espaçamento simples
+	%\bibliographystyle{plain} 	% citação bibliográfica textual
+	\bibliographystyle{styles/plainnat-ime} 	% citação bibliográfica textual
+	\bibliography{bib/bibliografia}  			% associado ao arquivo: 'bibliografia.bib'
+
 \end{frame}
 
 
