@@ -17,7 +17,13 @@
 
 % remove this line and the "ucs" option to the documentclass when your editor is not utf8-capable
 \usepackage[utf8x]{inputenc}    % to make utf-8 input possible
-\usepackage[english]{babel}     % hyphenation etc., alternatively use 'german' as parameter
+\usepackage[brazil]{babel}
+%\usepackage[english]{babel}     % hyphenation etc., alternatively use 'german' as parameter
+
+% figure numbers, captions and subcaptions
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[font=footnotesize]{subcaption}
+\setbeamertemplate{caption}[numbered]
 
 \include{template}  % THIS is the line that includes the FU template!
 
@@ -26,13 +32,14 @@
 % the documentclass option "9pt" to "10pt"
 
 % image to be shown on the title page (without file extension, should be pdf or png)
-\titleimage{images/capa}
+\titleimage{images/capa_pga}
 
 \title[Smoothing Techniques] % (optional, use only with long paper titles)
-{Smoothing Techniques}
+{Técnicas de Suavização}
 
 \subtitle
-{Applied to seismic sources characterization and \\ probabilistic seismic hazard analysis (PSHA)}
+{aplicadas à caracterização de fontes sísmicas e \\ 
+ à análise probabilística de ameaça sísmica (PSHA)}
 
 \author[Pirchiner, Marlon] % (optional, use only with lots of authors)
 {M.~Pirchiner }
@@ -43,7 +50,7 @@
 % - Keep it simple, no one is interested in your street address.
 
 \date[EMAP2014] % (optional, should be abbreviation of conference name)
-{Master Presentation}
+{Defesa de Mestrado, julho de 2014}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
@@ -60,7 +67,7 @@
 % the beginning of each subsection:
 \AtBeginSubsection[]
 {
-  \begin{frame}<beamer>{Outline}
+  \begin{frame}<beamer>{Agenda}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
@@ -71,13 +78,18 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Outline}
+\begin{frame}{Agenda}
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
 
-\section{Motivation}
-	\subsection{The Basic Problem That We Studied}
+
+
+\section{Motivação}
+	\subsection{Análise probabilística de ameaça sísmica}
+	\subsection{Caracterização de fontes sismogênicas em ambientes intraplaca}
+
+
 
 \begin{frame}{Make Titles Informative. Use Uppercase Letters. Long Titles are Split Automatically.}{Subtitles are optional.}
   % - A title should summarize the slide in an understandable fashion
@@ -89,6 +101,62 @@
     Use very short sentences or short phrases.
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}{Figura teste}
+explicar algum item por exemplo
+	\begin{itemize}
+		\item algum argumento pra dar
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[height=0.70\textheight]{images/global_pde_mag_all}
+		\caption[Mapa Mundial de Epicentros 1963-1998]
+		{Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998}}
+		\label{f:global_epicenters}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Subfiguras\: outro teste}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_sa3_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
+			\label{fig:sa_eq_record}
+	\end{subfigure}%
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.48\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{images/hmtk_bsb2013_rate}
+			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
+			\label{fig:br_eq_record}
+    \end{subfigure}%
+	\caption{Número de tremores registrados por ano após 1900}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
+
+%
+\begin{frame}{Figura teste}
+explicar algum item por exemplo
+\begin{itemize}
+	\item algum argumento pra dar
+\end{itemize}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=0.70\textheight]{images/global_pde_mag_all}
+   \caption[Mapa Mundial de Epicentros 1963-1998]
+   		   {Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998} } 
+   \label{f:global_epicenters}
+\end{figure}
+\end{frame}
+
+
 
 \begin{frame}{Make Titles Informative.}
 

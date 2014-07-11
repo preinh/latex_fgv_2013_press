@@ -10,11 +10,11 @@
 
 %%% FU logo
 % small version for upper right corner of normal pages
-\pgfdeclareimage[height=0.9cm]{university-logo}{images/logo}
+\pgfdeclareimage[height=0.9cm]{university-logo}{images/logo_emap}
 \logo{\pgfuseimage{university-logo}}
 % large version for upper right corner of title page
-\pgfdeclareimage[height=0.9cm]{big-university-logo}{images/logo}
-\newcommand{\titleimage}[1]{\pgfdeclareimage[height=2.92cm]{title-image}{#1}}
+\pgfdeclareimage[height=1.0cm]{big-university-logo}{images/logo_emap}
+\newcommand{\titleimage}[1]{\pgfdeclareimage[height=6cm]{title-image}{#1}}
 \titlegraphic{\pgfuseimage{title-image}}
 %%% end FU logo
 
@@ -55,18 +55,18 @@
 \setbeamertemplate{title page}{
 % upper right: FU logo
 \vskip2pt\hfill\pgfuseimage{big-university-logo} \\
-\vskip6pt\hskip3pt
+\vskip-20pt\hskip3pt
 % title image of the presentation
-\begin{minipage}{11.6cm}
-\hspace{-1mm}\inserttitlegraphic
+\begin{minipage}{5.0cm}
+\hspace{-.1cm}\inserttitlegraphic
 \end{minipage}
 
 % set the title and the author
-\vskip14pt
-\parbox[top][1.35cm][c]{11cm}{\color{text-grey}\inserttitle \\ \small \insertsubtitle}
-\vskip11pt
-\parbox[top][1.35cm][c]{11cm}{\small \insertauthor \\ \insertinstitute \\[3mm] \insertdate}
-}
+\vskip-12pt
+\parbox[top][1.35cm][c]{\textwidth}{\raggedleft{\color{text-grey}\inserttitle \\ \small \insertsubtitle}}
+\vskip3pt
+\parbox[top][1.35cm][c]{\textwidth}{\raggedleft{\small \insertauthor \\ \insertinstitute \\[3mm]
+\scriptsize \insertdate}} }
 %%% end title page
 
 %%% colors
@@ -118,5 +118,5 @@
 \lstset{language=Python} % this sets the syntax highlighting
 \lstset{mathescape=true} % this switches on $...$ substitution in code
 % enables UTF-8 in source code:
-\lstset{literate={��}{{\"a}}1 {��}{{\"o}}1 {��}{{\"u}}1 {��}{{\"A}}1 {��}{{\"O}}1 {��}{{\"U}}1 {��}{\ss}1}
+\lstset{literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 }
 %%% end listings
