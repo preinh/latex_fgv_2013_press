@@ -22,23 +22,23 @@
 
 % figure numbers, captions and subcaptions
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up,compatibility=false]{caption}
-\usepackage[font=small,compatibility=false]{subcaption}
+\usepackage[font=footnotesize,compatibility=false]{subcaption}
 \usepackage[caption=false]{subfig}
-
-\captionsetup[subcaption]{}
 
 
 \setbeamertemplate{caption}[numbered]
 
 % links
 %\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=Green,bookmarksopen=true]{hyperref}
+\usepackage{hyperref}
+\pdfcatalog{ /PageMode /FullScreen }
 
 % bibliography
 \usepackage[fixlanguage]{babelbib}
 %\usepackage{biblatex}
 
 % % links coloridos
-%\usepackage[all]{hypcap}                    % soluciona o problema com o
+% \usepackage[all]{hypcap}                    % soluciona o problema com o
 % hyperref e capitulos
 \usepackage[round,sort,nonamebreak]{natbib} % citação bibliográfica textual(plainnat-ime.bst)
 \bibpunct{(}{)}{;}{a}{\hspace{-0.7ex},}{,} % estilo de citação. Veja alguns exemplos em http://merkel.zoneo.net/Latex/natbib.php
@@ -109,13 +109,16 @@
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
-\AtBeginSubsection[]{
+\AtBeginSubsection{
   \begin{frame}<beamer>{Agenda}
     \tableofcontents[currentsection, currentsubsection]
   \end{frame}
-}
+  }
+
 
 \begin{document}
+
+
 
 \begin{frame}[plain]
   \titlepage
@@ -135,12 +138,15 @@
 \begin{frame}{Make Titles Informative. Use Uppercase Letters. Long Titles are Split Automatically.}{Subtitles are optional.}
   % - A title should summarize the slide in an understandable fashion
   %   for anyone how does not follow everything on the slide itself.
-  \begin{itemize}
-  \item
-    Use \texttt{itemize} a lot.
-  \item
-    Use very short sentences or short phrases.
-  \end{itemize}
+
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=.90\textheight]{images/seismicity_br} 
+	  \caption{Sismicidade do Brasil. Catálogo \gls{bsb2013}.}
+	  \label{fig:br_seis} 
+	\end{figure}
+
+
 \end{frame}
 
 
@@ -178,16 +184,18 @@ explicar algum item por exemplo
 
 
 \begin{frame}{Subfiguras outro teste}
+se eu disser algo por aqui dá zica \\
+testa pra ver
 \begin{figure}
 	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		  	\centering
 			\includegraphics[width=1.00\textwidth]{images/hmtk_sa3_rate}
 			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
 			\label{fig:sa_eq_record}
 	\end{subfigure}%
 	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.48\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		  	\centering
 			\includegraphics[width=1.00\textwidth]{images/hmtk_bsb2013_rate}
 			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
@@ -231,24 +239,6 @@ explicar algum item por exemplo
   \end{itemize}
 \end{frame}
 
-
-
-\begin{frame}{Subfiguras outro teste}
-\begin{figure}
-	\centering
-	\subfloat[Número de tremores registrados por ano,\gls*{iscgem}.
-			\label{fig:sa_eq_record}]{
-		  	\centering
-			\includegraphics[width=0.48\textwidth]{images/hmtk_sa3_rate}}
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\subfloat[Número de tremores registrados por ano,\gls*{bsb2013}
-			\label{fig:br_eq_record}]{
-		  	\centering
-			\includegraphics[width=0.48\textwidth]{images/hmtk_bsb2013_rate}}
-	\caption{Número de tremores registrados por ano após 1900}
-	\label{fig:eq_record}
-\end{figure}
-\end{frame}
 
 
 \begin{frame}{Subfiguras outro teste}
@@ -391,7 +381,7 @@ int main (void)
 % All of the following is optional and typically not needed. 
 \appendix
 \section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
+\subsection<presentation>*{Referências}
 
 
 
