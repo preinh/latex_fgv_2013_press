@@ -136,7 +136,7 @@
 \section{Contexto}
 %=============================================================================
 %=============================================================================
-\subsection{Tremores de Terra e Tectônica}
+\subsection{Tectônica e Tremores de Terra}
 %=============================================================================
 
 %-----------------------------------------------------------------------------
@@ -169,7 +169,7 @@
 %=============================================================================
 
 %-----------------------------------------------------------------------------
-\begin{frame}{Sismicidade da América do Sul}
+\begin{frame}{Geologia e sismicidade da América do Sul}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[t]{0.48\textwidth}
@@ -198,7 +198,7 @@
 %=============================================================================
 
 %-----------------------------------------------------------------------------
-\begin{frame}{Geologia e Sismicidade do Brasil}
+\begin{frame}{Geologia e sismicidade do Brasil}
 \begin{figure}[H]
 	\scriptsize
 	\centering
@@ -223,11 +223,22 @@
 
 
 %=============================================================================
-\section{O problema}
+\section{Problema}
 %=============================================================================
 %=============================================================================
 \subsection{Cálculo de ameaça sísmica}
 %=============================================================================
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Risco sísmico}
+\begin{block}{Risco Sísmico}
+	\centering
+	$\text{Ameaça Sísmica} \star \text{Vulnerabilidade} \star \text{Valor Exposto}$
+\end{block}
+\end{frame}
+
+
 %-----------------------------------------------------------------------------
 \begin{frame}{Cálculo da ameaça sísmica: fluxo de trabalho}
 \begin{figure}[H]
@@ -239,6 +250,57 @@
 \label{fig:classical_psha}
 \end{figure}
 \end{frame}
+
+
+%=============================================================================
+\subsection{Método de Zoneamento (Cornell \& McGuire)}
+%=============================================================================
+
+\begin{frame}{Etapas do Método de Zoneamento}
+
+	\begin{itemize}[<+->]
+		\item[(i)] em cada zona $i$, o processo de ocorrência de tremores seja 
+		modelado como um processo de Poisson com taxa $\lambda_i$, assumindo que os tremores em diferentes zonas são
+		independentes.
+		\item[(ii)] Numa zona $i$, a magnitude dos tremores é modelada como uma \gls{va}
+		com densidade $f_{M_i}(\cdot)$.
+		\item[(iii)] A distância entre cada tremor da zona $i$ e o local $S$ é modelada como uma \gls{va}
+		com densidade $f_{D_i}(\cdot)$.
+		\item[(iv)] O modelo de predição do movimento do chão (\gls{gmpe}) é expresso pela regressão da medida de intensidade
+		em magnitude, distância, condições geológicas do local $S$ e outros fatores.
+	\end{itemize}
+
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuições de Frequência e Magnitude (MFD)}
+	\begin{block}{Integral de Ameaça (método de zoneamento)}
+		\begin{equation} 
+		p_i= \displaystyle \int_{m_i =M_{\min}(i)}^{M_{\max}(i)}
+		\int_{x_i =0}^{\infty}  P \left\{ \mbox{\small intensidade \normalsize }>I| M_i = m_i; D_i = x_i \right\}f_{M_i}(m_i) f_{D_i}( x_i )
+		\mathrm{d}m_i \mathrm{d}x_i
+		\end{equation}
+	\end{block}
+	onde $f_{M_i}$ é a distribuição de magnitudes na zona $i$, 
+	 $f_{D_i}$ é a distribuição das distâncias entre o local de análise e a zona
+	 $i$. $P \left\{ \mbox{\small intensidade \normalsize }>I| M_i = m_i; D_i = x_i
+	\right\}$ é estimada pelos modelos de predição de movimento do chão (GMPEs),
+	genericamente entendidos como
+	
+	\begin{block}{GMPE}
+		\begin{equation} \label{pgamodel}
+		\ln I = \overline{\ln I}(M, D, \theta) + \sigma(M, D, \theta) \varepsilon.
+		\end{equation}
+	\end{block}
+	onde $\overline{\ln I}(M, D, \theta)$ (e respectivamente $\sigma(M, D,
+	\theta)$) é a média condicional (e desvio padrão) de $\ln I$ para certa magnitude $M$, distância $D$
+	e condições $\theta$, enquanto $\varepsilon$ é uma \gls{va} gaussiana padrão.
+\end{frame}
+
+
+
 
 
 
@@ -253,6 +315,18 @@
   \caption{Ecossistema de módulos, bibliotecas e utilitários do OpenQuake}
   \label{fig:oq} 
 \end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Openquake: principais componentes}
+\begin{itemize}
+  \item oq-engine: cálculo de ameaça e risco
+  \item oq-hazardlib: biblioteca para o cálculo de ameaça sísmica
+  \item oq-nrmllib: linguagem de marcação para ameaça e risco sísmico
+  \item oq-risklib: biblioteca para o cálculo de risco sísmico
+  \item HMTK: kit de ferramentas para modelagem do cálculo de ameaça.
+\end{itemize}
 \end{frame}
 
 
@@ -272,7 +346,7 @@
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{Dourado2014: Zoneamento (Cornell \& McGuire)}
+\begin{frame}{Dourado2014: Método de Zoneamento (Cornell \& McGuire)}
 \begin{figure}[H]
   \centering
   \includegraphics[height=.93\textheight]{a_dourado} 
@@ -295,7 +369,6 @@
 
 
 
-
 %=============================================================================
 \section{Dados}
 %=============================================================================
@@ -304,18 +377,16 @@
 %=============================================================================
 
 
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Distribuições de Frequência e Magnitude}
-\begin{figure}[H]
-   \centering
-   \includegraphics[height=0.90\textheight]{mfd}
-   \caption[Distribuições de frequência e magnitude]
-   		   {Distribuições de frequência e magnitude} 
-   \label{f:mfd}
-\end{figure} 
+\begin{frame}{Distribuições de Frequência e Magnitude (MFD)}
+	\begin{block}{Lei de Gutenberg-Richter}
+		\begin{equation}
+			\gls{eqn:gr_mfd}
+			\label{eq:gr_mfd}
+		\end{equation}
+	\end{block}
+	\small
+	\glsdesc*{eqn:gr_mfd}.
 \end{frame}
-
 
 
 %-----------------------------------------------------------------------------
@@ -334,17 +405,83 @@
 
 
 %-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Incremental de Frequência e Magnitude}
+Com as transformações $\alpha = 10^a$ e $\beta = b\ln{10}$, a mesma
+distribuição pode ser escrita como: \\
+
+	\begin{block}{Gutenberg-Richter Incremental}
+		\begin{equation}
+			\begin{split}
+				\gls{sym:N_m} &= 10^{\gls{sym:a} - \gls{sym:b}\gls{sym:m}} \\
+							  &= \alpha e^{-\beta m}
+			\end{split}
+			\label{eq:gr_exp}
+		\end{equation}
+	\end{block}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Cumulativa de Frequência e Magnitude}
+A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira: 
+	\begin{block}{Gutenberg-Richter Cumulativa}
+		\begin{equation}
+			\begin{split}
+				N(m > m_{min}) &= \alpha \int\limits_{m_{min}}^{\infty}e^{-\beta m}\mathrm{d}m \\
+							   &= \frac{\alpha}{\beta} e^{-\beta m} \\
+							   &= \alpha_{cum} e^{-\beta m}.
+			\end{split}
+			\label{eq:gr_cum}
+		\end{equation}
+	\end{block}
+	onde $\alpha_{cum} = \alpha / \beta $.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{MFD Duplamente truncada}
+
+\begin{itemize}
+  \item Uma das MFDs disponíveis e utilizadas no OpenQuake.
+\end{itemize}
+
+	\begin{block}{MFD Duplamente Truncada}
+	\begin{equation}
+			\gls*{sym:N_m} = \frac{e^{-\beta (m - m_{min})}}{1 -e^{-\beta (m_{max} - m_{min}) } } , m_{min} \leq m \leq m_{max}
+		\label{eq:gr_dtr}
+	\end{equation}
+	\end{block}
+	onde $m_{min}$ e $m_{max}$ são respectivamente as magnitudes mínima e máxima.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Ilustração das Distribuições de Frequência e Magnitude}
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=0.90\textheight]{mfd}
+   \caption[Distribuições de frequência e magnitude]
+   		   {Distribuições de frequência e magnitude} 
+   \label{f:mfd}
+\end{figure} 
+\end{frame}
+
+
+
+
+%-----------------------------------------------------------------------------
 \begin{frame}{Taxa de sismicidade}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[t]{0.50\textwidth}
 	  	\centering
 		\includegraphics[width=1.0\textwidth]{hmtk_sa3_rate}
-		\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
+		\subcaption{Número de tremores registrados por ano, \gls*{iscgem}}
 		\label{fig:sa_eq_record}
 	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[t]{0.48\textwidth}
+	~ %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[t]{0.50\textwidth}
 	  	\centering
 		\includegraphics[width=1.0\textwidth]{hmtk_bsb2013_rate}
 		\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
@@ -354,6 +491,7 @@
 	\label{fig:eq_record}
 \end{figure}
 \end{frame}
+
 
 
 
@@ -456,10 +594,9 @@
 
 
 %=============================================================================
-\subsection{Pré-processamento}
+\subsection{Remoção de Agrupamentos}
 %=============================================================================
 
-\subsubsection{Agrupamentos}
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Remoção de Agrupamentos: \gls{bsb2013}}
@@ -485,7 +622,6 @@
 \end{frame}
 
 
-
 %-----------------------------------------------------------------------------
 \begin{frame}{Agrupamentos}
 \begin{figure}[H]
@@ -509,9 +645,10 @@
 \end{frame}
 
 
-\subsubsection{Magnitude de Completude}
 
-
+%======================================
+\subsection{Magnitude de Completude}
+%======================================
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Método de Stepp: \gls{iscgem}}
@@ -567,10 +704,155 @@
 %=============================================================================
 \section{Técnicas de Suavização}
 %=============================================================================
+%=============================================================================
+\subsection{Geral}
+%=============================================================================
+%-----------------------------------------------------------------------------
+\begin{frame}{Histograma}
+	\begin{block}{Histograma 2D normalizado da taxa anual de sismicidade}
+		\begin{equation}
+		\scriptsize
+			\ensuremath{
+			\frac{\text{o número observado de sismos na célula}}
+				 {\text{área/volume da célula} \times 
+				  \text{número total de sismos observados}}
+			/
+			\text{tempo de observação em anos}
+			}
+		\label{eq:rate_count}
+		\end{equation}
+	\end{block}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Suavização: modelo simplificado}
+Para os $n$ pares (célula, taxa de sismicidade) $(x_1, R_1), (x_2, R_2), \cdots, (x_n, R_n)$
+obtidos pela contagem anterior, considere um modelo para a taxa de sismicidade $R$ 
+em uma determinada célula $x_i$ a partir dessa amostra dada pelo
+	\begin{block}{Modelo simplificado}
+		\begin{equation}
+			\ensuremath{
+				R(x_i) = \lambda(x_i) + \epsilon_i,\;\;\; i=1,\dots,n
+			}
+		\label{eq:rate_model}
+		\end{equation}
+	\end{block}
+	onde os $\epsilon_i$ são \gls{va} não-correlacionadas que
+	representam os erros tais que $E(\epsilon_i \arrowvert X = x_i) = 0$ 
+	e a $Var(\epsilon_i \arrowvert X = x_i) = \sigma^2(x_i)$. 
+	
+	\begin{itemize}
+	  \item $\lambda(x_i) = E(R_i \arrowvert X = x_i)$ é uma função de regressão.
+	\end{itemize}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Suavização: estimadores}
+É possível definir um estimador ou suavizador linear $\hat{\lambda}$ para $\lambda$
+como
+	\begin{block}{Estimador para a taxa de sismicidade}
+		\begin{equation}
+			\ensuremath{
+				\hat{\lambda}(x) = \sum_{i=1}^{n}w_i(x)\,R_i.
+			}
+		\label{eq:rate_estim}
+		\end{equation}
+	\end{block}
+se para todo $x \in \mathbb{R}$ existe uma sequência de pesos $w_1(x),
+w_2(x),\cdots,w_n(x)$ tais que $\sum_{i=1}^{n}w_i(x) = 1$.
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Funções de Núcleo}
+Função de núcleo (\emph{Kernel}) é qualquer função par, contínua e limitada que satisfaz as seguintes
+	\begin{block}{Propriedades}
+		\centering
+		(i) $\int \lvert K(\boldsymbol{r})\rvert \,\mathrm{d}\boldsymbol{r} < \infty $
+		\;\;\;\;\;(ii) $\underset{ \lvert\boldsymbol{r} \rvert \to \infty }{\lim} 
+						\lvert \boldsymbol{r} \, K(\boldsymbol{r})\rvert =0$ 
+		\;\;\;\;\;(iii) $\int \! K(\boldsymbol{r})	\,\mathrm{d}\boldsymbol{r} = 1 $
+	\end{block}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Formas das Funções de Núcleo}
+	Um \emph{kernel} pode assumir muitas formas funcionais, por exemplo 
+	\begin{block}{Gaussiano}
+		\begin{equation}
+			\ensuremath{
+				K_{gs}(\gls{sym:r}\arrowvert h) = \eta_1(h)
+					e^{- \frac{\|\gls{sym:r}\|^2}
+		 				 	  {2 h^2 }},
+		 	}
+		\label{eq:kernel_gs}
+		\end{equation}
+	\end{block}
+ou
+	\begin{block}{Lei de Potência}
+		\begin{equation}
+			\ensuremath{
+				K_{pl}(\gls{sym:r}\arrowvert h) = 
+					\frac{\eta_2(h)}
+		 				 {\left( \|\gls{sym:r}\|^2 + h^2 \right)^{\frac{3}{2}} },
+		 	}
+		\label{eq:kernel_pl}
+		\end{equation}
+	\end{block}
+	onde $h$ é conhecida como \alert{largura de banda} ou
+	\emph{bandwidth} e $\eta_1(h)$ e $\eta_2(h)$ são fatores de normalização para
+	que as integrais sejam igual à unidade.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Estimador de Nadaraya-Watson}
+	Sejam $h \in \mathbb{R}, h > 0$ e $K$ uma função de núcleo.
+	O estimador de Nadaraya-Watson é definido pelos seguintes
+	\begin{block}{Pesos de Nadaraya-Watson}
+		\begin{equation}
+			\ensuremath{
+				w_i(x) = \frac{ K\left( \frac{x - x_i}{h} \right)}
+							  {\sum_{j=1}^{n} K\left( \frac{x - x_j}{h} \right) },
+			}
+		\label{eq:rate_wi}
+		\end{equation}
+	\end{block}
+\end{frame}
+
 
 %=============================================================================
 \subsection{Frankel, 1995}
 %=============================================================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Frankel1995: Fundamento}
+Consiste em aplicar o
+\begin{block}{Suavizador gaussiano de Nadaraya-Watson}
+\begin{equation}
+	\ensuremath{
+		\tilde{n}_j = \frac{ \sum_{i} n_i \,e^{ - \left(\frac{\gls{sym:dij}}{\gls{sym:dF}}\right)^2}}
+						   { \sum_{i}     e^{ - \left(\frac{\gls{sym:dij}}{\gls{sym:dF}}\right)^2}},
+	}
+	\label{eq:ni}
+\end{equation}
+\end{block}
+onde 
+\begin{itemize}
+	\item $d_F$ é a largura de banda \alert{fixa}, nomeada distância de
+	correlação
+	\item $\tilde{n}_j$ é a taxa cumulativa de sismicidade (número de sismos com magnitude
+	$m$ maior que a mínima magnitude \gls{sym:Md} do catálogo) suavizada na célula $j$
+	\item $n_i$ é o número de sismos em cada outra célula $i$ e
+	\item \gls{sym:dij} é \glsdesc{sym:dij}.
+\end{itemize}
+\end{frame}
+
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Frankel1995: Taxa de Sismicidade (\gls{bsb2013})}
