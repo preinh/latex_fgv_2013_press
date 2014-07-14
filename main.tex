@@ -21,8 +21,8 @@
 %\usepackage[english]{babel}     % hyphenation etc., alternatively use 'german' as parameter
 
 % figure numbers, captions and subcaptions
-\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up,compatibility=false]{caption}
-\usepackage[font=footnotesize,compatibility=false]{subcaption}
+\usepackage[font=footnotesize,format=plain,labelfont=bf,up,textfont=it,up,compatibility=false]{caption}
+\usepackage[font=scriptsize,compatibility=false]{subcaption}
 \usepackage[caption=false]{subfig}
 
 
@@ -31,7 +31,7 @@
 % links
 %\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=Green,bookmarksopen=true]{hyperref}
 \usepackage{hyperref}
-\pdfcatalog{ /PageMode /FullScreen }
+%\pdfcatalog{ /PageMode /FullScreen }
 
 % bibliography
 \usepackage[fixlanguage]{babelbib}
@@ -96,7 +96,8 @@
 % - Keep it simple, no one is interested in your street address.
 
 \date[EMAP2014] % (optional, should be abbreviation of conference name)
-{Defesa de Mestrado, julho de 2014}
+{julho de 2014}
+%{Defesa de Mestrado, julho de 2014}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
@@ -107,7 +108,7 @@
 
 % you can redefine the text shown in the footline. use a combination of
 % \insertshortauthor, \insertshortinstitute, \insertshorttitle, \insertshortdate, ...
-\renewcommand{\footlinetext}{\insertshortinstitute, \insertshorttitle, \insertshortdate}
+\renewcommand{\footlinetext}{\insertshortinstitute,\insertshorttitle,\insertshortdate}
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
@@ -121,7 +122,6 @@
 \begin{document}
 
 
-
 \begin{frame}[plain]
   \titlepage
 \end{frame}
@@ -131,9 +131,16 @@
   % You might wish to add the option [pausesections]
 \end{frame}
 
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
 
+%=============================================================================
+\section{Contexto}
+%=============================================================================
+%=============================================================================
+\subsection{Tremores de Terra e Tectônica}
+%=============================================================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição mundial de epicentros}
 \begin{figure}[H]
    \centering
    \includegraphics[height=0.95\textheight]{global_pde_mag_all}
@@ -141,14 +148,11 @@
    		   {Mapa Mundial de Epicentros 1963-1998 - \citet{lowman_jr_1998}} 
    \label{f:global_epicenters}
 \end{figure} 
-
-
 \end{frame}
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Teoria de Placas}
 \begin{figure}[H]
    \centering
    \includegraphics[height=0.95\textheight]{litho_plates_overview}
@@ -156,524 +160,477 @@
    		   {Cartografia das placas litosféricas - \citet{usgs_plates_1996}} 
    \label{f:plates_overview}
 \end{figure} 
+\end{frame}
 
+
+
+%=============================================================================
+\subsection{Sismicidade da América do Sul}
+%=============================================================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Sismicidade da América do Sul}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+	  \centering
+	  \includegraphics[width=.85\textwidth]{lithology_sa} 
+	  \subcaption{Mapa geológico. (\url{http://onegeology.org}).}
+	  \label{fig:sa_tec} 
+	\end{subfigure}
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[t]{0.48\textwidth}
+	  \centering
+	  \includegraphics[width=.85\textwidth]{seismicity_sa} 
+	  \subcaption{Sismicidade, Catálogo ISC-GEM. 
+	  			Geologia: \gls{cgmw} via OneGeology.}
+	  \label{fig:sa_seis} 
+	\end{subfigure}
+	%\caption{Geologia e Sismicidade da América do sul}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
+
+
+
+%=============================================================================
+\subsection{Sismicidade do Brasil}
+%=============================================================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Geologia e Sismicidade do Brasil}
+\begin{figure}[H]
+	\scriptsize
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+	  \centering
+	  \includegraphics[width=1.0\textwidth]{tectonico_brasil} 
+	  \subcaption{Mapa Geológico do Brasil em escala 1:1.000.000.
+	  \citet{bizzi_2003}}
+	  \label{fig:br_tec} 
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+	  \centering
+	  \includegraphics[width=1.0\textwidth]{seismicity_br} 
+	  \subcaption{Sismicidade do Brasil. Catálogo \gls{bsb2013}.}
+	  \label{fig:br_seis} 
+	\end{subfigure}
+	%\caption{Geologia e Sismicidade do Brasil}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
+
+
+
+%=============================================================================
+\section{O problema}
+%=============================================================================
+%=============================================================================
+\subsection{Cálculo de ameaça sísmica}
+%=============================================================================
+%-----------------------------------------------------------------------------
+\begin{frame}{Cálculo da ameaça sísmica: fluxo de trabalho}
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{l}
+	\includegraphics[height=0.90\textheight]{classical_psha_workflow}
+	\end{tabular}
+	\caption{Fluxo de trabalho clássico para a \gls{psha} \citep{crowley_2013}.}
+\label{fig:classical_psha}
+\end{figure}
+\end{frame}
+
+
+
+%=============================================================================
+\subsection{Ferramentas}
+%=============================================================================
+%-----------------------------------------------------------------------------
+\begin{frame}{Openquake}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[height=.90\textheight]{oq_ecosystem} 
+  \caption{Ecossistema de módulos, bibliotecas e utilitários do OpenQuake}
+  \label{fig:oq} 
+\end{figure}
+\end{frame}
+
+
+
+%=============================================================================
+\subsection{Resultados Anteriores}
+%=============================================================================
+%-----------------------------------------------------------------------------
+\begin{frame}{GSHAP: Ameaça}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.95\textheight]{pga_gshap} 
+  \caption{Resultado do GSHAP para o Brasil: \gls{PGA} (10\%/50anos) em unidades de $g$}
+  \label{fig:gshap} 
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Dourado2014: Zoneamento (Cornell \& McGuire)}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.93\textheight]{a_dourado} 
+  \caption{Zoneamento sísmico e caracterização das zonas sísmicas por \citep{dourado_2014}.
+  Os valores para a magnitude mínima foram de 3.0}
+  \label{fig:a_dourado} 
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Dourado2014: Ameaça}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.95\textheight]{pga_dourado_oq} 
+  \caption{Mapa de ameaça sísmica, PGA(poe 0.1, 50y)[Dourado, 20014] OpenQuake-Engine }
+  \label{fig:pga_dourado_oq} 
+\end{figure}
 \end{frame}
 
 
 
 
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
+%=============================================================================
+\section{Dados}
+%=============================================================================
+%=============================================================================
+\subsection{Análise exploratória}
+%=============================================================================
 
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuições de Frequência e Magnitude}
 \begin{figure}[H]
    \centering
-   \includegraphics[height=0.95\textheight]{mfd}
+   \includegraphics[height=0.90\textheight]{mfd}
    \caption[Distribuições de frequência e magnitude]
    		   {Distribuições de frequência e magnitude} 
    \label{f:mfd}
 \end{figure} 
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{MFD: ISC-GEM e BSB2013.08}
 \begin{figure}[H]
    \centering
-   \includegraphics[height=0.95\textheight]{occurrence}
+   \includegraphics[height=0.90\textheight]{occurrence}
    \caption[Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
    para a América do Sul unido com o \gls{bsb2013}]
    {Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
    para a América do Sul unido com o \gls{bsb2013}} 
    \label{f:occurrence}
 \end{figure} 
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.70\textheight]{seismicity_sa} 
-  \caption{Sismicidade da América do Sul, Catálogo ISC-GEM (seção \ref{sec:data_source}) . 
-  			A geologia ao fundo é fonte da \gls{cgmw} via OneGeology.
-		   Sismos mais profundos foram registrados no interior da placa, inclusive sobre o Acre.
-  		   }
-  \label{fig:sa_seis} 
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.70\textheight]{tectonico_brasil} 
-  \caption{Mapa Geológico do Brasil\footnotemark em escala 1:1.000.000}.
-  \label{fig:br_tec} 
-\end{figure}
-\footnotetext{\citet{bizzi_2003}}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.90\textheight]{seismicity_br} 
-  \caption{Sismicidade do Brasil. Catálogo \gls{bsb2013} (seção \ref{sec:data_source2}).}
-  \label{fig:br_seis} 
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
+\begin{frame}{Taxa de sismicidade}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[b]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
-			\label{fig:sa_eq_record}
+	\begin{subfigure}[t]{0.48\textwidth}
+	  	\centering
+		\includegraphics[width=1.0\textwidth]{hmtk_sa3_rate}
+		\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
+		\label{fig:sa_eq_record}
 	\end{subfigure}%
 	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
-			\label{fig:br_eq_record}
+	\begin{subfigure}[t]{0.48\textwidth}
+	  	\centering
+		\includegraphics[width=1.0\textwidth]{hmtk_bsb2013_rate}
+		\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
+		\label{fig:br_eq_record}
     \end{subfigure}%
 	\caption{Número de tremores registrados por ano após 1900}
 	\label{fig:eq_record}
 \end{figure}
-
-
-
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[height=.80\textheight]{oq_ecosystem} 
-  \caption{Ecossistema de módulos, bibliotecas e utilitários do OpenQuake}
-  \label{fig:oq} 
-\end{figure}
-
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
+\begin{frame}{Distribuição Temporal de Magnitudes: \gls*{iscgem}}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[b]{0.45\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_weekday}
-			\subcaption{Distribuição dos tremores nos dias da semana, \gls{iscgem}}
-			\label{fig:sa_week_hist}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.45\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_weekday}
-			\subcaption{Distribuição dos tremores nos dias da semana, \gls{bsb2013}}
-			\label{fig:br_week_hist}
-    \end{subfigure}%
-        %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-          %(or a blank line to force the subfigure onto a new line)
-          
- 	\begin{subfigure}[b]{0.45\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_hour}
-			\subcaption{Distribuição do horário de ocorrência dos tremores, \gls{iscgem}}
-			\label{fig:sa_hour_hist}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.45\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_hour}
-			\subcaption{Distribuição do horário de ocorrência dos tremores, \gls{bsb2013}}
-			\label{fig:br_hour_hist}
-    \end{subfigure}%
-        %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-          %(or a blank line to force the subfigure onto a new line)
+	\includegraphics[width=0.95\textwidth]{time_mag_count_sa}
+	\caption{Catálogo \gls{iscgem} 1900-2012}
+	\label{fig:tmf_sa}
+\end{figure}
+\end{frame}
 
-	\begin{subfigure}[b]{0.45\textheight}
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Temporal de Magnitudes: \gls*{bsb2013}}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{time_mag_count_br}
+	\caption{Catálogo \gls{bsb2013} 1900-2012}
+	\label{fig:tmf_br_1960}
+\end{figure}%
+\end{frame}
+
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição de Profundidades}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{dep_sa_hist}
+			\includegraphics[width=1.00\textwidth]{dep_sa_hist}
 			\subcaption{Distribuição da profundidade dos tremores, \gls{iscgem}}
 			\label{fig:sa_dep_hist}
 	\end{subfigure}%
 	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.4\textheight}
+	\begin{subfigure}[t]{0.4\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{dep_br_hist}
+			\includegraphics[width=1.00\textwidth]{dep_br_hist}
 			\subcaption{Distribuição da profundidade dos tremores, \gls{bsb2013}}
 			\label{fig:br_dep_hist}
         \end{subfigure}%
-        %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-
-  \caption{Checagem de qualidade.}
+%  \caption{Profundidades.}
   \label{fig:qc_histograms} 
 \end{figure}
-
-
-
 \end{frame}
 
 
 
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
 
+%-----------------------------------------------------------------------------
+\begin{frame}{Número de sismos por dias da semana}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[b]{0.48\textheight}
+	\begin{subfigure}[t]{0.48\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{decluster_sa}
-			\subcaption{Número cumulativo de tremores registrados por ano para o \gls{iscgem}
-			original e para diferentes métodos/janelas de remoção de agrupamentos.}
-			\label{fig:sa_eq_record}
+			\includegraphics[width=1.0\textwidth]{hmtk_sa3_weekday}
+			\subcaption{Distribuição dos tremores nos dias da semana, \gls{iscgem}}
+			\label{fig:sa_week_hist}
 	\end{subfigure}%
 	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.48\textheight}
+	\begin{subfigure}[t]{0.48\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{decluster_br}
-			\subcaption{Número cumulativo de tremores registrados por ano para o \gls{bsb2013}
-			original e para diferentes métodos/janelas de remoção de agrupamentos.}
-			\label{fig:br_eq_record}
+			\includegraphics[width=1.0\textwidth]{hmtk_bsb2013_weekday}
+			\subcaption{Distribuição dos tremores nos dias da semana, \gls{bsb2013}}
+			\label{fig:br_week_hist}
     \end{subfigure}%
-	\caption{Número cumulativo de tremores registrados por ano após 1900}
-	\label{fig:eq_decluster_cum}
+  %\caption{Checagem de qualidade.}
+  \label{fig:qc_histograms} 
 \end{figure}
-
-
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Distribuição da hora de ocorrência}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[t]{0.46\textheight}
+ 	\begin{subfigure}[t]{0.45\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_pp_decluster}
+			\includegraphics[width=1.00\textwidth]{hmtk_sa3_hour}
+			\subcaption{Distribuição do horário de ocorrência dos tremores, \gls{iscgem}}
+			\label{fig:sa_hour_hist}
+	\end{subfigure}%
+	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[t]{0.45\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{hmtk_bsb2013_hour}
+			\subcaption{Distribuição do horário de ocorrência dos tremores, \gls{bsb2013}}
+			\label{fig:br_hour_hist}
+    \end{subfigure}%
+  %\caption{Checagem de qualidade.}
+  \label{fig:qc_histograms} 
+\end{figure}
+\end{frame}
+
+
+
+
+%=============================================================================
+\subsection{Pré-processamento}
+%=============================================================================
+
+\subsubsection{Agrupamentos}
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Remoção de Agrupamentos: \gls{bsb2013}}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.90\textheight]{decluster_br}
+	\caption{Número cumulativo de tremores registrados por ano para o \gls{bsb2013}
+	original e para diferentes métodos/janelas de remoção de agrupamentos.}
+	\label{fig:br_eq_record}
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Remoção de Agrupamentos: \gls{iscgem}}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.90\textheight]{decluster_sa}
+	\caption{Número cumulativo de tremores registrados por ano para o \gls{iscgem}
+	original e para diferentes métodos/janelas de remoção de agrupamentos.}
+	\label{fig:sa_eq_record}
+	\end{figure}%
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Agrupamentos}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.46\textwidth}
+		  	\centering
+			\includegraphics[width=1.00\textwidth]{hmtk_sa3_pp_decluster}
 			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
 			\label{fig:sa_decluster}
 	\end{subfigure}%
 	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[t]{0.50\textheight}
+	\begin{subfigure}[t]{0.50\textwidth}
 		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_pp_decluster}
+			\includegraphics[width=1.00\textwidth]{hmtk_bsb2013_pp_decluster}
 			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
 			\label{fig:br_decluster}
     \end{subfigure}%
-	\caption{Número de tremores registrados por ano após 1900}
+	%\caption{Número de tremores registrados por ano após 1900}
 	\label{fig:eq_decluster}
 \end{figure}
-
 \end{frame}
+
+
+\subsubsection{Magnitude de Completude}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-	  \centering
-	  \begin{subfigure}[b]{0.7\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{time_mag_count_sa}
-			\caption{Catálogo \gls{iscgem} 1900-2012}
-			\label{fig:tmf_sa}
-        \end{subfigure}%
-        %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-          %(or a blank line to force the subfigure onto a new line)
-
-	  \begin{subfigure}[b]{0.7\textheight}
-		  	\centering
-  			\includegraphics[height=1.00\textheight]{time_mag_count_br}
-			\caption{Catálogo \gls{bsb2013} 1900-2012}
-			\label{fig:tmf_br}
-       \end{subfigure}%
-
-	   \begin{subfigure}[b]{0.7\textheight}
-		  	\centering
-  			\includegraphics[height=1.00\textheight]{time_mag_count_br_1960}
-			\caption{Catálogo \gls{bsb2013} a partir de 1960-2012}
-			\label{fig:tmf_br_1960}
-       \end{subfigure}%
-
-  \caption{Contagem de sismos em tempo e em magnitude.}
-  \label{fig:qc_time_mag_count} 
-\end{figure}
-
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Método de Stepp: \gls{iscgem}}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[b]{0.47\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{stepp_sa}
-			\subcaption{Diagrama de Stepp para o \gls{iscgem} (\emph{declustered})}
-			\label{fig:sa_stepp}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.47\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{stepp_br}
-			\subcaption{Diagrama de Stepp para o \gls{bsb2013} (\emph{declustered})}
-			\label{fig:br_stepp}
-    \end{subfigure}%
-	\caption{Diagrama de Stepp para análise da magnitude de completude \gls{sym:Mc}}
-	\label{fig:eq_stepp}
+	\includegraphics[height=0.90\textheight]{stepp_sa}
+	\caption{Diagrama de Stepp para o \gls{iscgem} (\emph{declustered})}
+	\label{fig:sa_stepp}
 \end{figure}
+\end{frame}
 
 
+%-----------------------------------------------------------------------------
+\begin{frame}{Método de Stepp: \gls{bsb2013}}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.90\textheight]{stepp_br}
+	\caption{Diagrama de Stepp para o \gls{bsb2013} (\emph{declustered})}
+	\label{fig:br_stepp}
+\end{figure}
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}[c]{Magnitudes de Completude}
 	\begin{table}[h]
 	  	\centering
+	  	\footnotesize
 		\begin{tabular}{l|*{11}{c}}
 		$M_c$ & 3.0  & 3.5  & 4.0  & 4.5  & 5.0  & 5.5  & 6.0  & 6.5  & 7.0  & 7.5  & 8 \\  \hline
 		Ano   & 1986 & 1986 & 1986 & 1960 & 1958 & 1958 & 1927 & 1898 & 1885 & 1885 & 1885   \\
 		\end{tabular}
 		\caption{Magnitude de completude, \gls{iscgem}}
 		\label{tab:mc_sa}
-	\end{table}
-
+	\end{table} \\
+	\quad		\\
+	\quad		\\
 	\begin{table}[h]
 	  	\centering
+	  	\footnotesize
 		\begin{tabular}{l|*{7}{c}}
 		$M_c$ & 3.0  & 3.5  & 4.0  & 4.5  & 5.0  & 5.5  & 6.0  \\  \hline
 		Ano   & 1980 & 1975 & 1975 & 1965 & 1965 & 1860 & 1860 \\
 		\end{tabular}
-		\caption{Magnitude de completude, Cat.BSB2013}
+		\caption{Magnitude de completude, \gls{bsb2013}}
 		\label{tab:mc_br}
 	\end{table}
-
 \end{frame}
 
 
 
+%=============================================================================
+\section{Técnicas de Suavização}
+%=============================================================================
+
+%=============================================================================
+\subsection{Frankel, 1995}
+%=============================================================================
+
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
+\begin{frame}{Frankel1995: Taxa de Sismicidade (\gls{bsb2013})}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{woo_bandwidth} 
-  \caption{Ajuste da largura de banda para o método de Woo1996}
-  \label{fig:woo_b} 
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{helmstetter_catalogues} 
-  \caption{Catálogos de aprendizado e de teste para o método de \citet{helmstetter_2012}}
-  \label{fig:h_catalogue} 
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{helmstetter_hidi} 
-  \caption{Exemplo da largura de banda para um determinado evento para o método de Helmstetter, com $k_{cnn} = 5$ e
-  $a_{cnn} = 100$}
-  \label{fig:h_hidi} 
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{helmstetter_stationary_a} 
-  \caption{Taxa de sismicidade estacionaria calculara a partir da mediana da taxa de sismicidade
-  modelada pelo método de Helmstetter2012 para uma determinada célula $r_0$}
-  \label{fig:h_stationary} 
-\end{figure}
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-	\centering
-	\begin{tabular}{l}
-	\includegraphics[height=0.80\textheight]{classical_psha_workflow}
-	\end{tabular}
-	\caption{Fluxo de trabalho clássico para a \gls{psha} \citep{crowley_2013}.}
-\label{fig:classical_psha}
-\end{figure}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{pga_gshap} 
-  \caption{Resultado do GSHAP para o Brasil: \gls{PGA} (10\%/50anos) em unidades de $g$}
-  \label{fig:gshap} 
-\end{figure}
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{a_dourado} 
-  \caption{Zoneamento sísmico e caracterização das zonas sísmicas por \citep{dourado_2014}.
-  Os valores para a magnitude mínima foram de 3.0}
-  \label{fig:a_dourado} 
-\end{figure}
-
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{pga_dourado_oq} 
-  \caption{Mapa de ameaça sísmica, PGA(poe 0.1, 50y)[Dourado, 20014] OpenQuake-Engine }
-  \label{fig:pga_dourado_oq} 
-\end{figure}
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.80\textheight]{a_frankel_br} 
+  \includegraphics[height=.95\textheight]{a_frankel_br} 
   \caption{Mapa do valor-a, usando o catálogo \gls{bsb2013} calculado pelo método de Frankel, 1995 }
   \label{fig:a_fran_br} 
 \end{figure}
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Frankel1995: Taxa de Sismicidade (\gls{iscgem})}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{a_frankel_sa} 
+  \includegraphics[height=.95\textheight]{a_frankel_sa} 
   \caption{Mapa do valor-a, catálogo \gls{iscgem} [Frankel, 1995] }
   \label{fig:a_fran_sa} 
 \end{figure}
-
 \end{frame}
 
 
-
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Frankel1995: Ameaça}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{pga_frankel} 
+  \includegraphics[height=.95\textheight]{pga_frankel} 
   \caption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y) [Frankel, 1995] }
   \label{fig:pga_fran} 
 \end{figure}
-
 \end{frame}
 
 
 
+
+
+%=============================================================================
+\subsection{Woo, 1996}
+%=============================================================================
+
+
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
+\begin{frame}{Woo1996: Ajuste da largura de banda}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.90\textwidth]{woo_bandwidth} 
+  \caption{Ajuste da largura de banda para o método de Woo1996}
+  \label{fig:woo_b} 
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Woo1996: Taxa de Sismicidade (\gls{bsb2013})}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{a_woo} 
+  \includegraphics[height=.95\textheight]{a_woo} 
   \caption{Mapa do valor-a, usando o catálogo \gls{bsb2013} calculado pelo método de Woo, 1996 }
   \label{fig:a_woo} 
 \end{figure}
@@ -683,63 +640,88 @@
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Woo1996: Ameaça (MFD discreta e incremental)}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{pga_woo_inc} 
-  \caption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y) 
-  		   calculado com o Openquake a partir das fontes sísmicas
-  		   determinas pelo método de Woo, 1996, usando uma \gls{mfd}
-  		   discreta e incremental.
-  }
+  \includegraphics[height=.95\textheight]{pga_woo_inc} 
+  \caption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y).}
   \label{fig:pga_woo_inc} 
 \end{figure}
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Woo1996: Ameaça (MFD truncada)}
 \begin{figure}[H]
 	\centering
-	\begin{subfigure}[t]{0.47\textheight}
-		\centering
-		\includegraphics[height=1.0\textheight]{pga_woo_cum} 
-		\subcaption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y), 
-  		   calculado com o Openquake a partir das fontes sísmicas
-  		   determinas pelo método de Woo, 1996, usando uma \gls{mfd}
-  		   truncada usando o valor-a como o calor cumulativo
-  		   contado a partir da \gls{sym:Mmin}.
-		}
-		\label{fig:pga_woo_cum} 
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[t]{0.47\textheight}
-		\centering
-		\includegraphics[height=1.0\textheight]{pga_woo_dif} 
-		\subcaption{Mapa diferencial de ameaça, PGA (poe 10\%, 50y), 
-		   entre os modelos usando \gls{mfd} truncada e \gls{mfd}
-		   discreta. Diferença entre os mapas das figuras 
-		   \ref{fig:pga_woo_inc} e \ref{fig:pga_woo_cum}.
-		   }
-		\label{fig:pga_woo_dif} 
-	\end{subfigure}
-	\caption{Variação do resultado da ameaça em função do uso de diferentes 
-			\glspl{mfd} no OpenQuake}
-	\label{fig:pga_woo} 
+	\includegraphics[height=0.95\textheight]{pga_woo_cum} 
+	\caption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y).}
+	\label{fig:pga_woo_cum} 
 \end{figure}
-
-
 \end{frame}
 
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
+\begin{frame}{Woo1996: Ameaça (diferença)}
+\begin{figure}[H]
+	\centering
+		\includegraphics[height=0.95\textheight]{pga_woo_dif} 
+		\caption{Mapa diferencial de ameaça, PGA (poe 10\%, 50y)
+		   entre os mapas das figuras 
+		   \ref{fig:pga_woo_inc} e \ref{fig:pga_woo_cum}.}
+		\label{fig:pga_woo_dif} 
+\end{figure}
+\end{frame}
 
+
+
+%=============================================================================
+\subsection{Helmstetter, 2012}
+%=============================================================================
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Catálogos de treinamento e de teste}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.90\textheight]{helmstetter_catalogues} 
+  \caption{Catálogos de aprendizado e de teste para o método de \citet{helmstetter_2012}}
+  \label{fig:h_catalogue} 
+\end{figure}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Larguras de banda}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.90\textheight]{helmstetter_hidi} 
+  \caption{Exemplo da largura de banda para um determinado evento para o método de Helmstetter, com $k_{cnn} = 5$ e
+  $a_{cnn} = 100$}
+  \label{fig:h_hidi} 
+\end{figure}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Taxa estacionária de sismicidade}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.90\textwidth]{helmstetter_stationary_a} 
+  \caption{Taxa de sismicidade estacionaria calculada a partir da mediana da
+  taxa de sismicidade modelada pelo método de Helmstetter2012 para uma determinada célula $r_0$}
+  \label{fig:h_stationary} 
+\end{figure}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Parâmetros otimizados}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c}
@@ -751,41 +733,52 @@
 	\caption{Parâmetros otimizados para o modelo de Helmstetter a partir do catálogo \gls{bsb2013}}
 	\label{tab:hemlstetter}
 \end{table}
-
 \end{frame}
 
 
-
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Helmstetter2012: Taxa de sismicidade}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{a_helmstetter} 
+  \includegraphics[height=.95\textheight]{a_helmstetter} 
   \caption{Mapa do valor-a, usando o catálogo \gls{bsb2013} calculado pelo método de Helmstetter, 2012 }
   \label{fig:helm_r} 
 \end{figure}
-
 \end{frame}
 
 
-
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
+\begin{frame}{Helmstetter2012: Ameaça}
 \begin{figure}[H]
   \centering
-  \includegraphics[height=.80\textheight]{pga_helmstetter} 
+  \includegraphics[height=.93\textheight]{pga_helmstetter} 
   \caption{Mapa de ameaça sísmica, PGA (poe 10\%, 50y), 
   		   calculado com o OpenQuake a partir das fontes sísmicas
   		   determinas pelo método de Helmstetter,2012 }
   \label{fig:helm_h} 
 \end{figure}
+\end{frame}
+
+
+
+
+%=============================================================================
+\section{Discussão}
+%=============================================================================
+%-----------------------------------------------------------------------------
+\begin{frame}{slide}
+
+
+
 
 \end{frame}
 
 
 
+
+%=============================================================================
+\subsection{Contribuições}
+%=============================================================================
 %-----------------------------------------------------------------------------
 \begin{frame}{slide}
 
@@ -794,14 +787,9 @@
 
 
 
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
+%=============================================================================
+\subsection{Melhorias futuras}
+%=============================================================================
 %-----------------------------------------------------------------------------
 \begin{frame}{slide}
 
@@ -1002,7 +990,7 @@ testa pra ver
 \end{figure}
 \end{frame}
 
-\subsection{Previous Work}
+%\subsection{Previous Work}
 
 \begin{frame}[fragile]{An old algorithm}
 % NB. listings is quite powerful, but not well suited to be used with beamer
@@ -1042,9 +1030,8 @@ int main (void)
   \visible<4->{Note the use of \alert{\texttt{std::}}.}
 \end{frame}
 
-\section{Our Results/Contribution}
-
-\subsection{Main Results}
+%\section{Our Results/Contribution}
+%\subsection{Main Results}
 
 \begin{frame}{Make Titles Informative.}
   \begin{example}
@@ -1075,7 +1062,7 @@ int main (void)
 \end{frame}
 
 
-\subsection{Basic Ideas for Proofs/Implementation}
+%\subsection{Basic Ideas for Proofs/Implementation}
 
 \begin{frame}{Make Titles Informative.}
 \end{frame}
