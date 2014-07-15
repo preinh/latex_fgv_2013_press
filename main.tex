@@ -612,6 +612,55 @@ A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira:
 \subsection{Remoção de Agrupamentos}
 %=============================================================================
 
+%-----------------------------------------------------------------------------
+\begin{frame}{Remoção de Agrupamentos: Métodos}
+	A metodologia mais geral para identificação de agupamentos consiste em definir
+	janelas no espaço e no tempo para cada magnitude e associar ao agrupamento
+	sismos que ocorram dentro dessas janelas.
+	\vspace{0.3cm}
+
+	A primeira de formulação para o método de janelas foi a de 
+	\begin{block}{\citet{gardner_1974}}
+		\begin{equation}\begin{split} 
+		\mbox{d(m)} = &10^{0.1238 m + 0.983}\\
+		\mbox{t(m)} = & 
+		\begin{cases} 10^{0.032 m + 2.7389} & \text{se $m \geq 6.5$} \\ 
+		              10^{0.5409 m - 0.547} & \mbox{caso contrário}  \end{cases}\end{split}
+		\end{equation}
+	\end{block}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Remoção de Agrupamentos: Métodos}
+	Uma formulação alternativa foi apontada em \citep{marsan_david_2012} e proposta por
+	\begin{block}{Gr\"unthal}
+		\begin{equation}\begin{split} 
+		\mbox{d(m)} = & e^{1.77 + \left( {0.037 + 1.02 m} \right)^2} \\ 
+		   \mbox{t(m)} = & \begin{cases}   |e^{-3.95+ \left( {0.62 + 17.32 m}
+		    \right)^2}|    & \text{se $m \geq 6.5$ } \\ 10^{2.8 + 0.024 m} & 
+		    \text{caso contrário}  \end{cases}\end{split}
+		\end{equation}
+	\end{block}
+	\vspace{0.3cm}
+	E outra sugerida por 
+	\begin{block}{\citet{uhrhammer_1986}}
+		\begin{equation}
+		\mbox{d(m)} = e^{-1.024 + 0.804 m} \quad \mbox{t(m)} = 
+		    e^{-2.87 + 1.235 m}
+		\end{equation}
+	\end{block}
+	\vspace{0.3cm}
+	
+	\begin{itemize}
+		\item \citet{musson_1999}, propôs que as janelas de tempo
+fossem janelas móveis em vez de fixas implementado sua proposta no programa AFTERAN.
+	\end{itemize}
+\end{frame}
+
+
+
+
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Remoção de Agrupamentos: \gls{bsb2013}}
@@ -664,6 +713,42 @@ A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira:
 %======================================
 \subsection{Magnitude de Completude}
 %======================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Método de \citet{stepp_1971}}
+
+Sejam $\lambda_1, \lambda_2, \cdots, \lambda_n$ o número de sismos por unidade de tempo.
+\vspace{0.3cm}
+Assumindo que os tremores de certa faixa de magnitude têm distribuição de Poisson, a
+	\begin{block}{da taxa de média de sismicidade $\lambda$ por unidade de tempo}
+		\begin{equation}
+			\ensuremath{
+				\lambda =  \frac{1}{n}\sum_{i=1}^{n} \lambda_i.
+			}
+		\label{eq:mwaf}
+		\end{equation}
+	\end{block}
+    Com variância $\sigma_{\lambda}^2 =  \lambda/n$, sendo $n$ o número de intervalos.
+	\vspace{0.3cm}
+
+	Com intervalos de 1 ano, $n$ intervalos é o período $T$ de observação e o 
+	\begin{block}{desvio padrão}
+		\begin{equation}
+			\ensuremath{
+				 \sigma_{\lambda} = \frac{\sqrt{\lambda}}{\sqrt{T}}.
+			}
+		\label{eq:mwaf}
+		\end{equation}
+	\end{block}
+
+	\vspace{0.3cm}
+	Com taxa de sismicidade estacionária, seu desvio padrão deve se comportar como $1/\sqrt{T}$ para 
+tempos de observação $T$ crescentes.
+
+\end{frame}
+
+
+
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Método de Stepp: \gls{iscgem}}
@@ -828,7 +913,7 @@ ou
 %-----------------------------------------------------------------------------
 \begin{frame}{Estimador de Nadaraya-Watson}
 	Sejam $h \in \mathbb{R}, h > 0$ e $K$ uma função de núcleo.
-	O estimador de Nadaraya-Watson é definido pelos seguintes
+	O estimador de Nadaraya-Watson (\citet{nadaraya_1965}) é definido pelos seguintes
 	\begin{block}{Pesos de Nadaraya-Watson}
 		\begin{equation}
 			\ensuremath{
@@ -842,7 +927,7 @@ ou
 
 
 %=============================================================================
-\subsection{Frankel, 1995}
+\subsection{\citet{frankel_1995}}
 %=============================================================================
 
 %-----------------------------------------------------------------------------
@@ -907,7 +992,7 @@ onde
 
 
 %=============================================================================
-\subsection{Woo, 1996}
+\subsection{\citet{woo_1996}}
 %=============================================================================
 
 
@@ -1040,7 +1125,7 @@ distância média $h$ de cada tremor ao vizinho mais próximo em cada faixa de m
 
 
 %=============================================================================
-\subsection{Helmstetter, 2012}
+\subsection{\citet{helmstetter_2012}}
 %=============================================================================
 
 %-----------------------------------------------------------------------------
@@ -1324,8 +1409,12 @@ Restringindo os tempos do catálogo aos $t_i
 %=============================================================================
 \section{Discussão}
 %=============================================================================
+%=============================================================================
+\subsection{Resultados consolidados}
+%=============================================================================
+
 %-----------------------------------------------------------------------------
-\begin{frame}{Resultados}
+\begin{frame}{Painel de Resultados}
 
 \begin{columns}
 	\begin{column}[T]{.24\textwidth}
@@ -1349,64 +1438,88 @@ Restringindo os tempos do catálogo aos $t_i
 	\end{column}
 	
 \end{columns}
+\end{frame}
 
 
+\begin{frame}{Comentários}
+\begin{itemize}
+	\item Foi possivel aplicar as técnicas de suavização para gerar uma grade regular de fontes sísmicas 
+	pontuais, e então calcular a ameaça sísmica obtendo valores razoáveis, 
+	sem com isso definir zonas sísmicas, é o que se conhece também como métodos de \emph{zoneless}.
+
+	\item As diferenças nas formas de escolher a largura de banda das funções de núcleo de cada método,
+	podem talvez render ao método de Hemlstetter alguma vantagem, por ser localmente adaptável,
+	quando define claramente feições no nordeste, mas outros métodos, com escolhas mais rígidas,
+	também o fizeram, com bons resultados em outras regiões.
+	
+	\item O ajuste do método de Woo para o Brasil forneceu enormes larguras de banda, com mais de 3000km para
+	as maiores magnitudes (são poucas e o método se baseia em vizinhos mais próximos), isso dilui
+	a influência dos grandes sismos nas taxas de sismicidade.
+	
+	\item No caso do Brasil, essas primeiras estimativas sugerem que estudos de maior detalhe 
+	sejam feitos nas regiões de maior destaque.
+\end{itemize}
 \end{frame}
 
 
 
+%=============================================================================
+\subsection{Considerações}
+%=============================================================================
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Considerações}
+	\begin{itemize}
+		\item mesmo com implementações e fundamentos relativamente distintos, os métodos, no geral, conseguiram apresentar
+	uma boa estimativa das características da sismicidade a partir da sismicidade histórica catalogada.
+		\item uns distribuiram mais a taxa de sismicidade e a ameaça, uns destacando certas feições, outros outras.
+		\item a caracterização da MFD, o uso da sua forma discreta ou truncada, afeta o valor calculado para a
+	ameaça e merece atenção.
+		\item nenhum modelo parece ser o mais correto, todos mereçam devida consideração.
+		\item não é possível negligenciar a ocorrência de sismos profundos da zona de subducção
+	para a ameaça sísmica do extremo oeste do país.
+		\item o openquake cumpriu seu papel como calculador de ameaças.
+		\item os resultados do openquake foram compatíveis com o
+	modelo global, mesmo os valores calculados com o mesmo modelo de fontes sísmicas.
+		\item o HMTK se mostrou uma ferramenta essencial para a modelagem da ameaça e muitas funcionalidades permitem
+		facilmente a implementação dos principais fluxos de trabalho.
+	\end{itemize}
+\end{frame}
+
 
 %=============================================================================
-\subsection{Contribuições}
+\subsection{Desenvolvimentos futuros}
 %=============================================================================
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
+\begin{frame}{Desenvolvimentos futuros}
+\begin{itemize}
+	\item determinar a variação temporal e espacial da magnitude de completude. \citet{vorobieva_2013} aponta caminhos muito
+	interessantes.
+	\item com magnitudes de momento sísmico é possível avaliar modelos que levem em consideração a distribuição
+	de tensões crustais e mesmo a suavização da distribuição espacial de esforços crustais.
+	\item avançar na direção de critérios de seleção das relações de atenuação, outro braço do modelo de ameaças.
+	\item estudos de desagregação \citep{pagani_2007} também precisarão ser feitos no futuro.
+	\item avaliação das incertezas
+	\item elaboração de um cenário de ameaça, detalhando a árvore lógica para as fontes sísmicas e movimento do chão. 
+	\item modelos des suavização estudados funcionam bem para espressar a taxa estacionária de sismicidade, mas
+	talvez seja possível estudar modelos onde a taxa de sismicidade varia com o tempo como os modelos de sequência epidêmica
+	de pós-abalos (ETAS), que podem dar melhor resposta com pouco volume de dados.
+	\end{itemize}
 \end{frame}
-
-
-
-%=============================================================================
-\subsection{Melhorias futuras}
-%=============================================================================
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
 
 
 \section*{Sumário}
 
 \begin{frame}{Sumário}
-
-  % Keep the summary *very short*.
-  \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
-  
-  % The following outlook is optional.
-  \vskip0pt plus.5fill
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
-  \end{itemize}
+	\begin{itemize}
+	  \item Cálculo de ameaça sísmica e o papel fundamental da caracterização de fontes.
+	  \item Caracterização da distribuição de frequencia e magnitude e taxa de sismicidade.
+	  \item Metodologia clássica de zoneamento (\citet{cornell_1968, mcguire_1976})
+	  \item Técnicas de suavização para cálculo da taxa de sismicidade.
+	  \item Pré-processamento (controle de qualidade, agrupamentos e completude)
+	  \item Cálculo de ameaça (OpenQuake)
+	\end{itemize}
 \end{frame}
-
 
 
 % All of the following is optional and typically not needed. 
