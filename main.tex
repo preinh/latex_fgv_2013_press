@@ -167,28 +167,28 @@
 %=============================================================================
 \subsection{Sismicidade da América do Sul}
 %=============================================================================
-
 %-----------------------------------------------------------------------------
 \begin{frame}{Geologia e sismicidade da América do Sul}
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-	  \centering
-	  \includegraphics[width=.85\textwidth]{lithology_sa} 
-	  \subcaption{Mapa geológico. (\url{http://onegeology.org}).}
-	  \label{fig:sa_tec} 
-	\end{subfigure}
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[t]{0.48\textwidth}
-	  \centering
-	  \includegraphics[width=.85\textwidth]{seismicity_sa} 
-	  \subcaption{Sismicidade, Catálogo ISC-GEM. 
-	  			Geologia: \gls{cgmw} via OneGeology.}
-	  \label{fig:sa_seis} 
-	\end{subfigure}
-	%\caption{Geologia e Sismicidade da América do sul}
-	\label{fig:eq_record}
-\end{figure}
+
+\begin{columns}[T]
+	\begin{column}[T]{0.5\textwidth}
+		\begin{figure}[T]
+		  \centering
+		  \includegraphics[width=.85\textwidth]{lithology_sa} 
+		  \caption{Mapa geológico (\url{http://onegeology.org}).}
+		  \label{fig:sa_tec} 
+		\end{figure}
+	\end{column}
+	\begin{column}[T]{0.49\textwidth}
+		\begin{figure}[T]
+		  \centering
+		  \includegraphics[width=.85\textwidth]{seismicity_sa} 
+		  \caption{Sismicidade, Catálogo ISC-GEM.}
+		  \label{fig:sa_seis} 
+		\end{figure}
+	\end{column}
+\end{columns}
+
 \end{frame}
 
 
@@ -202,14 +202,14 @@
 \begin{figure}[H]
 	\scriptsize
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[T]{0.48\textwidth}
 	  \centering
 	  \includegraphics[width=1.0\textwidth]{tectonico_brasil} 
 	  \subcaption{Mapa Geológico do Brasil em escala 1:1.000.000.
 	  \citet{bizzi_2003}}
 	  \label{fig:br_tec} 
 	\end{subfigure}
-	\begin{subfigure}[t]{0.48\textwidth}
+	\begin{subfigure}[T]{0.48\textwidth}
 	  \centering
 	  \includegraphics[width=1.0\textwidth]{seismicity_br} 
 	  \subcaption{Sismicidade do Brasil. Catálogo \gls{bsb2013}.}
@@ -229,18 +229,8 @@
 \subsection{Cálculo de ameaça sísmica}
 %=============================================================================
 
-
 %-----------------------------------------------------------------------------
-\begin{frame}{Risco sísmico}
-\begin{block}{Risco Sísmico}
-	\centering
-	$\text{Ameaça Sísmica} \star \text{Vulnerabilidade} \star \text{Valor Exposto}$
-\end{block}
-\end{frame}
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Cálculo da ameaça sísmica: fluxo de trabalho}
+\begin{frame}{Fluxo de trabalho}
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{l}
@@ -256,17 +246,17 @@
 \subsection{Método de Zoneamento (Cornell \& McGuire)}
 %=============================================================================
 
-\begin{frame}{Etapas do Método de Zoneamento}
+\begin{frame}{Considerações sobre o método de zoneamento}
 
-	\begin{itemize}[<+->]
-		\item[(i)] em cada zona $i$, o processo de ocorrência de tremores seja 
+	\begin{itemize}
+		\item em cada zona $i$, o processo de ocorrência de tremores seja 
 		modelado como um processo de Poisson com taxa $\lambda_i$, assumindo que os tremores em diferentes zonas são
 		independentes.
-		\item[(ii)] Numa zona $i$, a magnitude dos tremores é modelada como uma \gls{va}
+		\item Numa zona $i$, a magnitude dos tremores é modelada como uma \gls{va}
 		com densidade $f_{M_i}(\cdot)$.
-		\item[(iii)] A distância entre cada tremor da zona $i$ e o local $S$ é modelada como uma \gls{va}
+		\item A distância entre cada tremor da zona $i$ e o local $S$ é modelada como uma \gls{va}
 		com densidade $f_{D_i}(\cdot)$.
-		\item[(iv)] O modelo de predição do movimento do chão (\gls{gmpe}) é expresso pela regressão da medida de intensidade
+		\item O modelo de predição do movimento do chão (\gls{gmpe}) é expresso pela regressão da medida de intensidade
 		em magnitude, distância, condições geológicas do local $S$ e outros fatores.
 	\end{itemize}
 
@@ -275,7 +265,7 @@
 
 
 %-----------------------------------------------------------------------------
-\begin{frame}{Distribuições de Frequência e Magnitude (MFD)}
+\begin{frame}{Probabilidades}
 	\begin{block}{Integral de Ameaça (método de zoneamento)}
 		\begin{equation} 
 		p_i= \displaystyle \int_{m_i =M_{\min}(i)}^{M_{\max}(i)}
@@ -286,9 +276,12 @@
 	onde $f_{M_i}$ é a distribuição de magnitudes na zona $i$, 
 	 $f_{D_i}$ é a distribuição das distâncias entre o local de análise e a zona
 	 $i$. $P \left\{ \mbox{\small intensidade \normalsize }>I| M_i = m_i; D_i = x_i
-	\right\}$ é estimada pelos modelos de predição de movimento do chão (GMPEs),
-	genericamente entendidos como
-	
+	\right\}$ é estimada pelos modelos de predição de movimento do chão (GMPEs).
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Equações de predição de movimento do chão}	
 	\begin{block}{GMPE}
 		\begin{equation} \label{pgamodel}
 		\ln I = \overline{\ln I}(M, D, \theta) + \sigma(M, D, \theta) \varepsilon.
@@ -298,8 +291,6 @@
 	\theta)$) é a média condicional (e desvio padrão) de $\ln I$ para certa magnitude $M$, distância $D$
 	e condições $\theta$, enquanto $\varepsilon$ é uma \gls{va} gaussiana padrão.
 \end{frame}
-
-
 
 
 
@@ -325,7 +316,7 @@
   \item oq-hazardlib: biblioteca para o cálculo de ameaça sísmica
   \item oq-nrmllib: linguagem de marcação para ameaça e risco sísmico
   \item oq-risklib: biblioteca para o cálculo de risco sísmico
-  \item HMTK: kit de ferramentas para modelagem do cálculo de ameaça.
+  \item \alert{HMTK}: kit de ferramentas para modelagem do cálculo de ameaça.
 \end{itemize}
 \end{frame}
 
@@ -339,7 +330,7 @@
 \begin{figure}[H]
   \centering
   \includegraphics[height=.95\textheight]{pga_gshap} 
-  \caption{Resultado do GSHAP para o Brasil: \gls{PGA} (10\%/50anos) em unidades de $g$}
+  \caption{Resultado do GSHAP para o Brasil, PGA(10\%/50anos), em unidades de $g$}
   \label{fig:gshap} 
 \end{figure}
 \end{frame}
@@ -373,150 +364,40 @@
 \section{Dados}
 %=============================================================================
 %=============================================================================
-\subsection{Análise exploratória}
+\subsection{Visão Geral}
 %=============================================================================
 
-
-\begin{frame}{Distribuições de Frequência e Magnitude (MFD)}
-	\begin{block}{Lei de Gutenberg-Richter}
-		\begin{equation}
-			\gls{eqn:gr_mfd}
-			\label{eq:gr_mfd}
-		\end{equation}
-	\end{block}
-	\small
-	\glsdesc*{eqn:gr_mfd}.
-\end{frame}
-
-
 %-----------------------------------------------------------------------------
-\begin{frame}{MFD: ISC-GEM e BSB2013.08}
-\begin{figure}[H]
-   \centering
-   \includegraphics[height=0.90\textheight]{occurrence}
-   \caption[Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
-   para a América do Sul unido com o \gls{bsb2013}]
-   {Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
-   para a América do Sul unido com o \gls{bsb2013}} 
-   \label{f:occurrence}
-\end{figure} 
+\begin{frame}{Catálogos}
+	\begin{columns}[T]
+		\begin{column}[T]{.5\textwidth}
+			\textbf{ISC-GEM}\\
+			\small
+			\begin{itemize}
+				\item versão: 1.04
+				\item licença: CC-BY-SA
+				\item registros: 110.000 aprox.
+				\item magnitudes: $\gls{sym:Mw}$
+				\item característica: redeterminação de
+			parâmetros
+				\item fonte: \gls{iscgem}
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}[T]{.5\textwidth}
+			\textbf{BSB2013.08}\\
+			\small
+			\begin{itemize}
+				\item versão: 2013.08
+				\item licença: CC-BY
+				\item registros: 900 aprox.
+				\item magnitudes: maioria $mR$
+				\item característica: determinação de parâmetros
+				\item fonte: colaborativo (ObSis-UnB, Unesp, IPT, UFRN, ON, IAG-USP e outros).
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Distribuição Incremental de Frequência e Magnitude}
-Com as transformações $\alpha = 10^a$ e $\beta = b\ln{10}$, a mesma
-distribuição pode ser escrita como: \\
-
-	\begin{block}{Gutenberg-Richter Incremental}
-		\begin{equation}
-			\begin{split}
-				\gls{sym:N_m} &= 10^{\gls{sym:a} - \gls{sym:b}\gls{sym:m}} \\
-							  &= \alpha e^{-\beta m}
-			\end{split}
-			\label{eq:gr_exp}
-		\end{equation}
-	\end{block}
-
-\end{frame}
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Distribuição Cumulativa de Frequência e Magnitude}
-A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira: 
-	\begin{block}{Gutenberg-Richter Cumulativa}
-		\begin{equation}
-			\begin{split}
-				N(m > m_{min}) &= \alpha \int\limits_{m_{min}}^{\infty}e^{-\beta m}\mathrm{d}m \\
-							   &= \frac{\alpha}{\beta} e^{-\beta m} \\
-							   &= \alpha_{cum} e^{-\beta m}.
-			\end{split}
-			\label{eq:gr_cum}
-		\end{equation}
-	\end{block}
-	onde $\alpha_{cum} = \alpha / \beta $.
-\end{frame}
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{MFD Duplamente truncada}
-
-\begin{itemize}
-  \item Uma das MFDs disponíveis e utilizadas no OpenQuake.
-\end{itemize}
-
-	\begin{block}{MFD Duplamente Truncada}
-	\begin{equation}
-			\gls*{sym:N_m} = \frac{e^{-\beta (m - m_{min})}}{1 -e^{-\beta (m_{max} - m_{min}) } } , m_{min} \leq m \leq m_{max}
-		\label{eq:gr_dtr}
-	\end{equation}
-	\end{block}
-	onde $m_{min}$ e $m_{max}$ são respectivamente as magnitudes mínima e máxima.
-\end{frame}
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Ilustração das Distribuições de Frequência e Magnitude}
-\begin{figure}[H]
-   \centering
-   \includegraphics[height=0.90\textheight]{mfd}
-   \caption[Distribuições de frequência e magnitude]
-   		   {Distribuições de frequência e magnitude} 
-   \label{f:mfd}
-\end{figure} 
-\end{frame}
-
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Taxa de sismicidade}
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[t]{0.50\textwidth}
-	  	\centering
-		\includegraphics[width=1.0\textwidth]{hmtk_sa3_rate}
-		\subcaption{Número de tremores registrados por ano, \gls*{iscgem}}
-		\label{fig:sa_eq_record}
-	\end{subfigure}%
-	~ %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[t]{0.50\textwidth}
-	  	\centering
-		\includegraphics[width=1.0\textwidth]{hmtk_bsb2013_rate}
-		\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
-		\label{fig:br_eq_record}
-    \end{subfigure}%
-	\caption{Número de tremores registrados por ano após 1900}
-	\label{fig:eq_record}
-\end{figure}
-\end{frame}
-
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Distribuição Temporal de Magnitudes: \gls*{iscgem}}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.95\textwidth]{time_mag_count_sa}
-	\caption{Catálogo \gls{iscgem} 1900-2012}
-	\label{fig:tmf_sa}
-\end{figure}
-\end{frame}
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{Distribuição Temporal de Magnitudes: \gls*{bsb2013}}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.95\textwidth]{time_mag_count_br}
-	\caption{Catálogo \gls{bsb2013} 1900-2012}
-	\label{fig:tmf_br_1960}
-\end{figure}%
-\end{frame}
-
-
 
 
 %-----------------------------------------------------------------------------
@@ -540,8 +421,6 @@ A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira:
   \label{fig:qc_histograms} 
 \end{figure}
 \end{frame}
-
-
 
 
 %-----------------------------------------------------------------------------
@@ -589,6 +468,142 @@ A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira:
   \label{fig:qc_histograms} 
 \end{figure}
 \end{frame}
+
+
+
+
+\begin{frame}{Distribuições de Frequência e Magnitude (MFD)}
+	\begin{block}{Lei de Gutenberg-Richter}
+		\begin{equation}
+			\gls{eqn:gr_mfd}
+			\label{eq:gr_mfd}
+		\end{equation}
+	\end{block}
+	\small
+	\glsdesc*{eqn:gr_mfd}.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{MFD: ISC-GEM e BSB2013.08}
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=0.90\textheight]{occurrence}
+   \caption[Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
+   para a América do Sul unido com o \gls{bsb2013}]
+   {Distribuição incremental e cumulativa de frequência e magnitude dos sismos presentes no catálogo ISC-GEM
+   para a América do Sul unido com o \gls{bsb2013}} 
+   \label{f:occurrence}
+\end{figure} 
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Incremental de Frequência e Magnitude}
+Com as transformações $\alpha = 10^a$ e $\beta = b\ln{10}$, a mesma
+distribuição pode ser escrita como: \\~\\
+
+	\begin{block}{Gutenberg-Richter Incremental}
+		\begin{equation}
+			\begin{split}
+				\gls{sym:N_m} &= 10^{\gls{sym:a} - \gls{sym:b}\gls{sym:m}} \\
+							  &= \alpha e^{-\beta m}
+			\end{split}
+			\label{eq:gr_exp}
+		\end{equation}
+	\end{block}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Cumulativa de Frequência e Magnitude}
+A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira: 
+	\begin{block}{Gutenberg-Richter Cumulativa}
+		\begin{equation}
+			\begin{split}
+				N(m > m_{min}) &= \alpha \int\limits_{m_{min}}^{\infty}e^{-\beta m}\mathrm{d}m \\
+							   &= \frac{\alpha}{\beta} e^{-\beta m} \\
+							   &= \alpha_{cum} e^{-\beta m}.
+			\end{split}
+			\label{eq:gr_cum}
+		\end{equation}
+	\end{block}
+	onde $\alpha_{cum} = \alpha / \beta $.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{MFD Duplamente truncada}
+	\begin{block}{MFD Duplamente Truncada}
+	\begin{equation}
+			\gls*{sym:N_m} = \frac{e^{-\beta (m - m_{min})}}{1 -e^{-\beta (m_{max} - m_{min}) } } , m_{min} \leq m \leq m_{max}
+		\label{eq:gr_dtr}
+	\end{equation}
+	\end{block}
+	onde $m_{min}$ e $m_{max}$ são respectivamente as magnitudes mínima e máxima.
+
+	\begin{itemize}
+	  \item Uma das MFDs disponíveis e utilizadas no OpenQuake.
+	\end{itemize}
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Ilustração das Distribuições de Frequência e Magnitude}
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=0.90\textheight]{mfd}
+   \caption[Distribuições de frequência e magnitude]
+   		   {Distribuições de frequência e magnitude} 
+   \label{f:mfd}
+\end{figure} 
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Taxa de sismicidade}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.50\textwidth}
+	  	\centering
+		\includegraphics[width=1.0\textwidth]{hmtk_sa3_rate}
+		\subcaption{Número de tremores registrados por ano, \gls*{iscgem}}
+		\label{fig:sa_eq_record}
+	\end{subfigure}%
+	~ %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[t]{0.50\textwidth}
+	  	\centering
+		\includegraphics[width=1.0\textwidth]{hmtk_bsb2013_rate}
+		\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
+		\label{fig:br_eq_record}
+    \end{subfigure}%
+	\caption{Número de tremores registrados por ano após 1900}
+	\label{fig:eq_record}
+\end{figure}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Distribuição Temporal de Magnitudes}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.41\textheight]{time_mag_count_sa}
+	\caption{Catálogo \gls{iscgem} 1900-2012}
+	\label{fig:tmf_sa}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.41\textheight]{time_mag_count_br}
+	\caption{Catálogo \gls{bsb2013} 1900-2012}
+	\label{fig:tmf_br}
+\end{figure}%
+\end{frame}
+
 
 
 
@@ -705,7 +720,7 @@ A distribuição \alert{cumulativa} pode ser obtida da seguinte maneira:
 \section{Técnicas de Suavização}
 %=============================================================================
 %=============================================================================
-\subsection{Geral}
+\subsection{Teoria Geral}
 %=============================================================================
 %-----------------------------------------------------------------------------
 \begin{frame}{Histograma}
@@ -897,10 +912,75 @@ onde
 
 
 %-----------------------------------------------------------------------------
+\begin{frame}{Woo1996: Fundamento}
+	\begin{block}{Taxa de Sismicidade}
+		\begin{equation}
+			\ensuremath{
+				\gls{sym:Rrm} = \sum_{i=1}^{N} \frac{ K(\gls{sym:r} - \gls{sym:ri}, m)}
+													{T({\gls{sym:ri})}},
+			}
+			\label{eq:Rrm}
+		\end{equation}
+	\end{block}
+	onde $N$ é o número de tremores $i$ no catálogo 
+	e $T(\gls{sym:ri})$ é o período em que todo sismo de magnitude acima de $m$ é completamente observado 
+	em \gls{sym:ri}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Woo1996: Funções de Núcleo}
+	\begin{block}{\citet{kagan_knopoff_1980} - infinito}
+		\begin{equation}
+			\ensuremath{
+				K_{KJ}(\gls{sym:r}, m \arrowvert \gls{sym:aW}) =  \frac{  \gls{sym:aW}  -1}{\pi\gls{sym:hm}^2}
+									\left( 1 + \frac{\gls{sym:r}^2}{\gls{sym:hm}^2} \right)^{-\gls{sym:aW}},
+			}
+			\label{eq:k_kj}
+		\end{equation}
+	\end{block}
+	onde \gls{sym:aW} é \glsdesc{sym:aW}.
+
+	\begin{block}{\citet{verejones_1992} - finito}
+		\begin{equation}
+			\ensuremath{
+				K_{VJ}(\gls{sym:r}, m \arrowvert \gls{sym:DW}) = 
+				\begin{cases}
+					\frac{\gls{sym:DW}}{2\pi\,\gls{sym:hm}} 
+					\left( \frac{\gls{sym:hm}}{\gls{sym:r}} \right)^{2 - \gls{sym:DW}} 
+					  & \gls{sym:r} \leq \gls{sym:hm} \\
+					0 & \gls{sym:r} > \gls{sym:hm}
+				\end{cases},
+			}
+			\label{eq:k_vj}
+		\end{equation}
+	\end{block}
+	onde \gls{sym:DW} é \glsdesc{sym:DW}.
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Woo1996: Largura de banda}
+A largura de banda no método de Woo, \alert{depende da magnitude}.
+\begin{block}{Largura de banda dependente da magnitude}
+	\begin{equation}
+		\ensuremath{
+			h(m\arrowvert \gls{sym:a0}, \gls{sym:a1}) = \gls{sym:a0}e^{\gls{sym:a1}m},
+		}
+		\label{eq:hm}
+	\end{equation}
+\end{block}
+$a_0$ e $a_1$ são determinados pela regressão entre a 
+distância média $h$ de cada tremor ao vizinho mais próximo em cada faixa de magnitude $m \pm \mathrm{d}m$
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
 \begin{frame}{Woo1996: Ajuste da largura de banda}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=.90\textwidth]{woo_bandwidth} 
+  \includegraphics[width=.95\textwidth]{woo_bandwidth} 
   \caption{Ajuste da largura de banda para o método de Woo1996}
   \label{fig:woo_b} 
 \end{figure}
@@ -963,17 +1043,77 @@ onde
 \subsection{Helmstetter, 2012}
 %=============================================================================
 
-
 %-----------------------------------------------------------------------------
-\begin{frame}{Helmstetter2012: Catálogos de treinamento e de teste}
-\begin{figure}[H]
-  \centering
-  \includegraphics[height=.90\textheight]{helmstetter_catalogues} 
-  \caption{Catálogos de aprendizado e de teste para o método de \citet{helmstetter_2012}}
-  \label{fig:h_catalogue} 
-\end{figure}
+\begin{frame}{Helmstetter2012: Fundamentos}
+	\begin{block}{Taxa de sismicidade}
+		\begin{equation}
+			\ensuremath{\gls{sym:R} = \sum_{i=1}^{N}{ \frac{1}{h_i\,{d_i}^2} \gls{sym:Kt}\gls{sym:Kr} }},
+			\label{eq:helms01}
+		\end{equation}
+	\end{block}
+	onde \gls{sym:R} é \glsdesc{sym:R}, 
+		  $K_t$ é a \glsdesc{sym:Kt}, 
+		  $K_r$ é a \glsdesc{sym:Kr}.
 \end{frame}
 
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Fundamentos}
+Restringindo os tempos do catálogo aos $t_i
+< t$ e ponderando segundo um peso $w$:
+	\begin{block}{Modelo para o \emph{forecast} da taxa de sismicidade}
+		\begin{equation}
+		\ensuremath{\gls{sym:R} = \gls{sym:Rmin} + \sum_{t_i < t}{ 
+			\frac{2\,w(\boldsymbol{r}_i,t_i)}{h_i\,{d_i}^2}
+					\gls{sym:Kt}\gls{sym:Kr} }},
+			\label{eq:helms02}
+		\end{equation}
+	\end{block}
+	onde onde \gls{sym:Rmin} é a \glsdesc{sym:Rmin} e os
+
+	\begin{block}{Pesos}
+		\begin{equation}
+			\ensuremath{ w(\boldsymbol{r},t) = 10^{ \gls{sym:b}(\boldsymbol{r},t) \left[ \gls{sym:Mc_rt} - \gls{sym:Md}
+			\right] } },
+			\label{eq:helms_wi}
+		\end{equation}
+	\end{block}
+
+	onde \gls{sym:wi} é o \glsdesc{sym:wi} na localização $\boldsymbol{r}$ e no instante $t$, 
+		  \gls{sym:b}$(\boldsymbol{r},t)$ é o \glsdesc{sym:b}, 
+		  \gls{sym:Mc_rt} é a \glsdesc{sym:Mc_rt}, 
+		  \gls{sym:Md} é a \glsdesc{sym:Md}.
+
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Método KNN-acoplado}
+	A determinação das larguras de banda \alert{localmente adaptáveis} segundo a densidade
+	espacial e temporal para cada um dos eventos é fruto de uma adaptação da 
+	otimização proposta por \citet{choi_1999}:
+	\begin{block}{Método acoplado dos vizinhos mais próximos}
+		\begin{equation}
+			\ensuremath{
+		%		h_i, d_i = \underset{d_i \ge \gls{sym:dk}, h_i \ge \gls{sym:hk}}{\argmin} 
+				h_i, d_i = \argmin_{\substack{h_i \ge \gls{sym:hk} \\
+								              d_i \ge \gls{sym:dk}}
+						           } 
+				\left[ s \left(h_i,d_i 
+					 		  \arrowvert
+							  \gls{sym:k_cnn},\gls{sym:a_cnn}
+					     \right) 
+					   := h_i + \gls{sym:a_cnn}d_i 
+			    \right],
+			}
+			\label{eq:helms_cnn}
+		\end{equation}
+	\end{block}
+	onde \gls{sym:k_cnn} é o \glsdesc{sym:k_cnn},
+		 \gls{sym:a_cnn} é o \glsdesc{sym:a_cnn},
+		 \gls{sym:dk} é o \glsdesc{sym:dk} e 
+		 \gls{sym:hk} é o \glsdesc{sym:hk}.
+\end{frame}
 
 
 %-----------------------------------------------------------------------------
@@ -988,6 +1128,22 @@ onde
 \end{frame}
 
 
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Taxa de sismicidade estacionária}
+	É calculada a partir da mediana da taxa modelada para cada célula.
+	\begin{block}{Taxa de sismicidade estacionária}
+		\begin{equation}
+			\ensuremath{
+				\bar{R}(\boldsymbol{r}_0) = \text{Mediana}\left[R(\boldsymbol{r}_0, t)\right].
+			}
+			\label{eq:helms_mediana}
+		\end{equation}
+	\end{block}
+	\begin{itemize}
+		\item dispensa a aplicação do método de remoção de agrupamentos.
+	\end{itemize}
+\end{frame}
+
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Helmstetter2012: Taxa estacionária de sismicidade}
@@ -1001,6 +1157,126 @@ onde
 \end{frame}
 
 
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Parâmetros}
+	Os parâmetros que definem cada modelo são
+	\begin{itemize}
+		\item a taxa mínima de sismicidade \gls{sym:Rmin},
+		\item \gls{sym:k_cnn} e 
+		\item \gls{sym:a_cnn}
+	\end{itemize}
+	
+	\vspace{0.8cm}
+	
+	E são escolhidos de forma a maximizar a capacidade 'preditiva' do modelo,
+	que pode ser feita separando o catálogo em duas partes:
+	\begin{itemize}
+		\item uma é usada para definir o modelo
+		\item outra é separada para avaliação do resultado.
+	\end{itemize}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Catálogos de treinamento e de teste}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=.90\textheight]{helmstetter_catalogues} 
+  \caption{Catálogos de aprendizado e de teste para o método de \citet{helmstetter_2012}}
+  \label{fig:h_catalogue} 
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Verossimilhança}
+	A probabilidade de se observar exatamente $n$ eventos em um processo de Poisson
+	com taxa $N_p$ é
+		\begin{equation}
+			\ensuremath{
+				\gls{sym:pNn} = \frac{{N_p}^n e^{-N_p}}{n!}.
+			}
+			\label{eq:loglik}
+		\end{equation}
+
+	\vspace{0.5cm}
+	E o logarítmo, a ser maximizado, da verossimilhança entre 
+	o que o modelo predisse e o que foi observado 
+	pode ser escrito como
+	\begin{block}{Log-Verossimilhança}
+		\begin{equation}
+			\ensuremath{
+				\gls{sym:L} = \sum_{i_x=1}^{N_x}\sum_{i_y=1}^{N_y}\log p\left[  \gls{sym:Np}, \gls{sym:nxy}  \right]
+			}
+			\label{eq:loglik}
+		\end{equation}
+	\end{block}
+	onde \gls{sym:Np} é \glsdesc{sym:Np},
+		\gls{sym:nxy} é \glsdesc{sym:nxy}.
+\end{frame}
+
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Distribuição uniforme}
+	No caso de uma distribuição de Poisson espacialmente uniforme com taxa $N_u$, o
+	\begin{block}{Log-Verossimilhança (uniforme)}
+		\begin{equation}
+			\ensuremath{
+				\gls{sym:Lu} = -N_t + 
+				\sum_{i_x = 1}^{N_x}\sum_{i_y=1}^{N_y}
+				\gls{sym:nxy}\log N_u - \log \left[ \gls{sym:nxy}! \right]
+			}
+			\label{eq:lu}
+		\end{equation}
+	\end{block}
+	onde $N_u = N_t/N_c$ com $N_t$ o número de sismos no catálogo-alvo e $N_c$ o número de células.
+\end{frame}
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Ganho de probabilidade}
+	\citet{kagan_knopoff_1977} definiram o 
+	\begin{block}{Ganho de probabilidade}
+		\begin{equation}
+			\ensuremath{
+				\gls{sym:G} = e^{ \frac{\gls{sym:L} - \gls{sym:Lu}}{\gls{sym:Nt}}   }
+			}
+			\label{eq:gain}
+		\end{equation}
+	\end{block}
+	por tremor predito por um determinado modelo sobre uma distribuição espacialmente uniforme
+	da taxa de sismicidade.
+\end{frame}
+
+%-----------------------------------------------------------------------------
+\begin{frame}{Helmstetter2012: Ganho de modelos}
+	Se dois modelos são preparados para um mesmo catálogo-alvo com $N_t$ eventos,
+	o ganho pode ser simplificada para
+	\begin{block}{Ganho}
+		\begin{equation}
+			\ensuremath{
+			\begin{align}
+				G & = e^{\sum_{i = 1}^{N_t}
+							\frac{\log \left[  \gls{sym:Npi} / \gls{sym:Nu}  \right]}
+								 {\gls{sym:Nt}}
+					  } \\
+				  & = {\langle  \gls{sym:Npi} / \gls{sym:Nu}  \rangle}_{geom}
+			\end{align}}
+			\label{eq:G}
+		\end{equation}	
+	\end{block}
+	
+	Uma vez que 
+	\begin{equation}
+		\ensuremath{
+		\begin{align}
+			L - L_u & = \sum_{i_x = 1}^{N_x}\sum_{i_y=1}^{N_y}
+					  \gls{sym:nxy}\log \left[ \frac{\gls{sym:Np}}{\gls{sym:Nu}} \right] \\
+					& = \sum_{i = 1}^{N_t}\log \left[\frac{\gls{sym:Npi}}{\gls{sym:Nu}} \right]
+		\end{align}}
+		\label{eq:llu}
+	\end{equation}
+\end{frame}
+
 
 %-----------------------------------------------------------------------------
 \begin{frame}{Helmstetter2012: Parâmetros otimizados}
@@ -1010,9 +1286,10 @@ onde
 		Parâmetro & Valor \\ \hline
 		$R_{min}$ & $0.1\times10^{-13}$ \\
 		$a_{cnn}$ & 325 \\
-		$k_{cnn}$ & 1 \\
+		$k_{cnn}$ & 1 \\ \hline
+		Ganho	  & 2.43
 	\end{tabular}
-	\caption{Parâmetros otimizados para o modelo de Helmstetter a partir do catálogo \gls{bsb2013}}
+	\caption{Parâmetros otimizados e Ganho para o método de Helmstetter a partir do catálogo \gls{bsb2013}}
 	\label{tab:hemlstetter}
 \end{table}
 \end{frame}
@@ -1048,9 +1325,30 @@ onde
 \section{Discussão}
 %=============================================================================
 %-----------------------------------------------------------------------------
-\begin{frame}{slide}
+\begin{frame}{Resultados}
 
-
+\begin{columns}
+	\begin{column}[T]{.24\textwidth}
+		\includegraphics[width=1\textwidth]{pga_gshap} \\
+		\includegraphics[width=1\textwidth]{pga_dourado_oq}
+	\end{column}
+	
+	\begin{column}[T]{.24\textwidth}
+		\includegraphics[width=1\textwidth]{a_frankel_br} \\
+		\includegraphics[width=1\textwidth]{pga_frankel}
+	\end{column}
+	
+	\begin{column}[T]{.24\textwidth}
+		\includegraphics[width=1\textwidth]{a_woo} \\
+		\includegraphics[width=1\textwidth]{pga_woo_inc}
+	\end{column}
+	
+	\begin{column}[T]{.24\textwidth}
+		\includegraphics[width=1\textwidth]{a_helmstetter} \\
+		\includegraphics[width=1\textwidth]{pga_helmstetter}
+	\end{column}
+	
+\end{columns}
 
 
 \end{frame}
@@ -1080,286 +1378,10 @@ onde
 
 
 
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
 
+\section*{Sumário}
 
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------
-\begin{frame}{slide}
-
-
-\end{frame}
-
-
-
-
-\begin{frame}{Make Titles Informative. Use Uppercase Letters. Long Titles are Split Automatically.}{Subtitles are optional.}
-  % - A title should summarize the slide in an understandable fashion
-  %   for anyone how does not follow everything on the slide itself.
-
-	\begin{figure}[H]
-	  \centering
-	  \includegraphics[height=.90\textheight]{seismicity_br} 
-	  \caption{Sismicidade do Brasil. Catálogo \gls{bsb2013}.}
-	  \label{fig:br_seis} 
-	\end{figure}
-
-
-\end{frame}
-
-
-\begin{frame}{Figura teste}
-explicar algum item por exemplo
-	\begin{itemize}
-		\item algum argumento pra dar
-	\end{itemize}
-	\begin{figure}[H]
-		\centering{}
-		\includegraphics[height=0.70\textheight]{global_pde_mag_all}
-		\caption[Mapa Mundial de Epicentros 1963-1998]
-		{Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998}}
-		\label{f:global_epicenters}
-\end{figure}
-\end{frame}
-
-
-
-%
-\begin{frame}{Figura teste}
-explicar algum item por exemplo
-\begin{itemize}
-	\item algum argumento pra dar
-\end{itemize}
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[height=0.70\textheight]{global_pde_mag_all}
-   \caption[Mapa Mundial de Epicentros 1963-1998]
-   		   {Mapa Mundial de Epicentros 1963-1998 \citet{lowman_jr_1998} } 
-   \label{f:global_epicenters}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{Subfiguras outro teste}
-se eu disser algo por aqui dá zica \\
-testa pra ver
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
-			\label{fig:sa_eq_record}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[t]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
-			\label{fig:br_eq_record}
-    \end{subfigure}
-	\caption{Número de tremores registrados por ano após 1900}
-	\label{fig:eq_record}
-\end{figure}
-\end{frame}
-
-
-
-\begin{frame}{Make Titles Informative.}
-
-  You can create overlays\dots
-  \begin{itemize}
-  \item using the \texttt{pause} command:
-    \begin{itemize}
-    \item
-      First item.
-      \pause
-    \item    
-      Second item.
-    \end{itemize}
-  \item
-    using overlay specifications:
-    \begin{itemize}
-    \item<3->
-      First item.
-    \item<4->
-      Second item.
-    \end{itemize}
-  \item
-    using the general \texttt{uncover} command:
-    \begin{itemize}
-      \uncover<5->{\item
-        First item.}
-      \uncover<6->{\item
-        Second item.}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{Subfiguras outro teste}
-\begin{figure}
-	\centering
-	\begin{subfigure}[b]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_sa3_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{iscgem}}
-			\label{fig:sa_eq_record}
-	\end{subfigure}%
-	\quad %~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-	\begin{subfigure}[b]{0.48\textheight}
-		  	\centering
-			\includegraphics[height=1.00\textheight]{hmtk_bsb2013_rate}
-			\subcaption{Número de tremores registrados por ano, \gls{bsb2013}}
-			\label{fig:br_eq_record}
-    \end{subfigure}
-	\caption{Número de tremores registrados por ano após 1900}
-	\label{fig:eq_record}
-\end{figure}
-\end{frame}
-
-%\subsection{Previous Work}
-
-\begin{frame}[fragile]{An old algorithm}
-% NB. listings is quite powerful, but not well suited to be used with beamer
-%  consider using semiverbatim or the like, see below
-\begin{lstlisting}[language=C]
-int main (void)
-{
-  std::vector<bool> is_prime (100, true);
-  for (int i = 2; i < 100; i++)
-    if (is_prime[i])
-      {
-        std::cout << i << " ";
-        for (int j = i; j < 100;
-            is_prime [j] = false, j+=i);
-      }
-  return 0;
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{An Algorithm For Finding Primes Numbers.}
-\begin{semiverbatim}
-\uncover<1->{\alert<0>{int main (void)}}
-\uncover<1->{\alert<0>{\{}}
-\uncover<1->{\alert<1>{ \alert<4>{std::}vector<bool> is_prime (100, true);}}
-\uncover<1->{\alert<1>{ for (int i = 2; i < 100; i++)}}
-\uncover<2->{\alert<2>{    if (is_prime[i])}}
-\uncover<2->{\alert<0>{      \{}}
-\uncover<3->{\alert<3>{        \alert<4>{std::}cout << i << " ";}}
-\uncover<3->{\alert<3>{        for (int j = i; j < 100;}}
-\uncover<3->{\alert<3>{             is_prime [j] = false, j+=i);}}
-\uncover<2->{\alert<0>{      \}}}
-\uncover<1->{\alert<0>{ return 0;}}
-\uncover<1->{\alert<0>{\}}}
-\end{semiverbatim}
-  \visible<4->{Note the use of \alert{\texttt{std::}}.}
-\end{frame}
-
-%\section{Our Results/Contribution}
-%\subsection{Main Results}
-
-\begin{frame}{Make Titles Informative.}
-  \begin{example}
-    \begin{itemize}
-    \item 2 is prime (two divisors: 1 and 2).
-    \item 3 is prime (two divisors: 1 and 3).
-    \item 4 is not prime (\alert{three} divisors: 1, 2, and 4).
-    \end{itemize}
-  \end{example}
-\end{frame}
-
-\begin{frame}{Make Titles Informative.}
-\begin{theorem}
- There is no largest prime number and, in addition, $$\int_\Omega \nabla u \cdot \nabla v = - \int_\Omega u \Delta v + \int_{\partial\Omega} u v n$$
- \end{theorem}
- \begin{proof}
- \begin{enumerate}
- \item<1-> Suppose $p$ were the largest prime number.
- \item<2-> Let $q$ be the product of the first $p$ numbers.
- \item<3-> Then $q + 1$ is not divisible by any of them.
- \item<1-> Thus $q + 1$ is also prime and greater than $p$.\qedhere
- \end{enumerate} 
- \end{proof}
- \uncover<4->{The proof used \textit{reductio ad absurdum}.}
-\end{frame}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-
-%\subsection{Basic Ideas for Proofs/Implementation}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-\begin{frame}{Make Titles Informative.}
-\end{frame}
-
-
-
-\section*{Summary}
-
-\begin{frame}{Summary}
+\begin{frame}{Sumário}
 
   % Keep the summary *very short*.
   \begin{itemize}
