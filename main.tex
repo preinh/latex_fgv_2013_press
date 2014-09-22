@@ -265,7 +265,30 @@ Salvador, BA}
 	
 	\subsection{iv. cálculo (propriamente dito) da ameaça.}
 	\begin{frame}{Cálculo da ameaça}
-		- cálculo da ameaça
+	
+	
+	Cálculo da \textbf{curva de ameaça} para cada um dos locais (\emph{sites}), dados um
+	conjunto de fontes sismicas e um conjunto de modelos de intensidade (GMPEs). 
+	
+	A probabilidade calculada é:
+	
+	\begin{equation}
+	    \Pr(X \geq x ~|~ T) = 1 - \prod_i \prod_j \Pr_{rup_{ij}}(X < x ~|~ T)
+	\end{equation}
+    
+    onde $\Pr(X \geq x | T)$ é a probabilidade de que o movimento do chão $X$
+    exceda o nível $x$, uma ou mais vezes no período $T$ e $\Pr_{rup_{ij}}(X < x | T)$
+ 	é a probabilidade de que a $j$-ésima ruptura na $i$-ésima fonte sísmica não produza nenhuma
+ 	intensidade que exceda $x$ durante o período $T$. A primeira produtória é sobre as fontes
+ 	e a segunda sobre as rupturas na fonte.
+ 
+	\\ ~
+ 
+	Se computa a probabilidade certo nivel $x$ seja excedido ao menos uma vez,
+	como 1 menos a probabilidade de que $x$ não seja excedido pelo movimento causado
+	por nenhuma ruptura em nenhuma das fontes durante um mesmo intervalo de tempo $T$, com o 
+	pressuposto de que as fontes e as rupturas nas fontes são \emph{independentes}.
+		
 	\end{frame}
 
 
